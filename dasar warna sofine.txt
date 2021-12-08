@@ -1,0 +1,4 @@
+#c7d0cd : abu
+#f6e9e3 : coklat muda
+#efcebb : coklat tua
+#8e6d59 : coklat tua banget
