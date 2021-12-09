@@ -43,19 +43,25 @@
                 </div>
             </div>
         </div>
-        <?php foreach ($dokter as $value): ?>
-            <form action="<?php echo site_url('home/save_dokter') ?>" method="post" enctype="multipart/form-data" >
-            <div class="col-lg-4">
-                <div class="box-layanan">
-                    <h4><?php echo $value->nama ?></h4>
-                    <input type="hidden" name="id_spam" value="<?php echo $spam->id_t_spam ?>">
-                    <input type="hidden" name="id_pegawai" value="<?php echo $value->id ?>">
-                    <input type="hidden" name="id_layanan" value="<?php echo $spam->id_layanan ?>">
-                    <input class="btn btn-success" type="submit" name="btn" value="Pilih Dokter" />
-                </div>
+        
+        <div class="container">
+            <div class="row">
+                <?php foreach ($dokter as $value): ?>
+                    <div class="col-lg-3">
+                    <form action="<?php echo site_url('home/save_dokter') ?>" method="post" enctype="multipart/form-data" >
+                        <div class="box-layanan">
+                            <img src="<?php echo base_url(); ?>assets/images/client-image.jpg" style="border-radius: 50%;width: 50%;" alt=""><br><br>
+                            <h4><?php echo $value->nama ?></h4>
+                            <input type="hidden" name="id_spam" value="<?php echo $spam->id_t_spam ?>">
+                            <input type="hidden" name="id_pegawai" value="<?php echo $value->id ?>">
+                            <input type="hidden" name="id_layanan" value="<?php echo $spam->id_layanan ?>">
+                            <input class="btn btn-warning" style="padding: 3px;font-size: 12px;margin-top: 30px;" type="submit" name="btn" value="Pilih Dokter" />
+                        </div>
+                    </form>
+                    </div>
+                <?php endforeach; ?>
             </div>
-            </form>
-        <?php endforeach; ?>
+        </div>
 
       </div>
     </div>

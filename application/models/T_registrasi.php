@@ -26,10 +26,12 @@ class T_registrasi extends CI_Model
     public function saveregis()
     {
         $post = $this->input->post();
+
         $this->id_pasien = $post["id_pasien"];
         $this->id_pegawai = $post["id_pegawai"];
         $this->tanggal_reg = $post["tanggal"];
         $this->jam_reg = $post["jam"];
+		
 
         return $this->db->insert($this->_table, $this);
     }
@@ -47,7 +49,7 @@ class T_registrasi extends CI_Model
     }
 
     function get_kode_reg(){
-		$q = $this->db->query("select REPLACE(MAX(RIGHT(no_reg,15)),'.','') as kode_max from ".$this->table."");
+		$q = $this->db->query("select REPLACE(MAX(RIGHT(no_reg,15)),'.','') as kode_max from ".$this->_table."");
 		$kd_fix = "";
 		if($q->num_rows()>0){
 			foreach($q->result() as $k){
@@ -74,7 +76,7 @@ class T_registrasi extends CI_Model
 
 	public function get_max_id()
 	{
-		$q = $this->db->query("SELECT MAX(id) as kode_max from ".$this->table."");
+		$q = $this->db->query("SELECT MAX(id) as kode_max from ".$this->_table."");
 		$kd = "";
 		if($q->num_rows()>0){
 			$kd = $q->row();

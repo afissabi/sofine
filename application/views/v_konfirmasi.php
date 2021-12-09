@@ -54,10 +54,10 @@
                         <option value="2">Pasien Baru</option>
                     </select>
                     <input type="hidden" name="id_spam" value="<?php echo $spam->id_t_spam ?>">
-                    <input type="text" name="id_pegawai" value="<?php echo $spam->id_pegawai ?>">
-                    <input type="text" name="id_layanan" value="<?php echo $spam->id_layanan ?>">
-                    <input type="text" name="tanggal" value="<?php echo $spam->tanggal ?>">
-                    <input type="text" name="jam" value="<?php echo $spam->jam ?>">
+                    <input type="hidden" name="id_pegawai" value="<?php echo $spam->id_pegawai ?>">
+                    <input type="hidden" name="id_layanan" value="<?php echo $spam->id_layanan ?>">
+                    <input type="hidden" name="tanggal" value="<?php echo $spam->tanggal ?>">
+                    <input type="hidden" name="jam" value="<?php echo $spam->jam ?>">
 
                     <div id="pasien1" style="display:none">
                         <input type="text" name="nik" id="nik" class="form-control"><button type="button" id="btn-search">Cari</button> <span id="loading">Mencari data...</span>
@@ -75,20 +75,20 @@
                         <input type="text" name="hp" id="hp" value="" placeholder="hp">
                     </div>
                     <div id="pasien2" style="display:none">
-                        <!-- <input type="text" name="nik" value="" placeholder="nik baru">
-                        <input type="text" name="nama" value="" placeholder="nama">
-                        <input type="text" name="tempat_lahir" value="" placeholder="Tempat Lahir">
-                        <input type="date" name="tgl_lahir" value="" placeholder="tgl Lahir">
-                        <select name="jenis_kel">
+                        <input type="text" name="nik2" value="" placeholder="nik baru">
+                        <input type="text" name="nama2" value="" placeholder="nama">
+                        <input type="text" name="tempat_lahir2" value="" placeholder="Tempat Lahir">
+                        <input type="date" name="tgl_lahir2" value="" placeholder="tgl Lahir">
+                        <select name="jenis_kelamin2">
                             <option value="L">Laki-Laki</option>
                             <option value="P">Perempuan</option>
                         </select>
-                        <input type="text" name="suku" value="" placeholder="suku">
-                        <input type="text" name="kerja" value="" placeholder="pekerjaan">
-                        <textarea name="alamat_rumah" placeholder="alamatrumah"></textarea>
-                        <input type="text" name="telp" value="" placeholder="telp rumah">
-                        <textarea name="alamat_kantor" placeholder="alamat kantor"></textarea>
-                        <input type="text" name="hp" value="" placeholder="hp"> -->
+                        <input type="text" name="suku2" value="" placeholder="suku">
+                        <input type="text" name="kerja2" value="" placeholder="pekerjaan">
+                        <textarea name="alamat_rumah2" placeholder="alamatrumah"></textarea>
+                        <input type="text" name="telp2" value="" placeholder="telp rumah">
+                        <textarea name="alamat_kantor2" placeholder="alamat kantor"></textarea>
+                        <input type="text" name="hp2" value="" placeholder="hp">
                     </div>
                 </div>
                 <button type="button" class="btn btn-brand" onclick="save()">Simpan</button>

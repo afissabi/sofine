@@ -373,7 +373,7 @@ CREATE TABLE `m_user` (
 
 /*Data for the table `m_user` */
 
-insert  into `m_user`(`id`,`id_role`,`id_pegawai`,`kode_user`,`username`,`password`,`status`,`last_login`,`foto`,`created_at`,`updated_at`,`deleted_at`) values ('1',1,'1','USR-00001','admin','SnIvSVV6c2UwdWhKS1ZKMDluUlp4dz09',1,'2021-12-08 02:06:10','user_default.png','2020-09-06 20:18:00','2021-12-08 02:06:10',NULL),('2',2,'2','USR-00002','cek','SnIvSVV6c2UwdWhKS1ZKMDluUlp4dz09',1,'2020-09-14 00:37:31','user_default.png','2020-09-06 20:18:00','2020-09-14 00:37:31',NULL),('3',1,'2','USR-00003','sugiono','SnIvSVV6c2UwdWhKS1ZKMDluUlp4dz09',1,NULL,'sugiono-1599399152.jpg','2020-09-06 20:18:00','2020-09-06 20:32:32',NULL);
+insert  into `m_user`(`id`,`id_role`,`id_pegawai`,`kode_user`,`username`,`password`,`status`,`last_login`,`foto`,`created_at`,`updated_at`,`deleted_at`) values ('1',1,'1','USR-00001','admin','SnIvSVV6c2UwdWhKS1ZKMDluUlp4dz09',1,'2021-12-09 05:55:14','user_default.png','2020-09-06 20:18:00','2021-12-09 05:55:14',NULL),('2',2,'2','USR-00002','cek','SnIvSVV6c2UwdWhKS1ZKMDluUlp4dz09',1,'2020-09-14 00:37:31','user_default.png','2020-09-06 20:18:00','2020-09-14 00:37:31',NULL),('3',1,'2','USR-00003','sugiono','SnIvSVV6c2UwdWhKS1ZKMDluUlp4dz09',1,NULL,'sugiono-1599399152.jpg','2020-09-06 20:18:00','2020-09-06 20:32:32',NULL);
 
 /*Table structure for table `t_diagnosa` */
 
@@ -637,7 +637,7 @@ insert  into `t_perawatan`(`id`,`id_reg`,`id_pasien`,`id_pegawai`,`tanggal`,`ana
 DROP TABLE IF EXISTS `t_registrasi`;
 
 CREATE TABLE `t_registrasi` (
-  `id` int(64) NOT NULL,
+  `id` int(64) NOT NULL AUTO_INCREMENT,
   `id_pasien` varchar(255) DEFAULT NULL,
   `no_reg` varchar(255) DEFAULT NULL,
   `tanggal_reg` date DEFAULT NULL,
@@ -655,7 +655,7 @@ CREATE TABLE `t_registrasi` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `t_registrasi` */
 
@@ -689,16 +689,19 @@ CREATE TABLE `t_spam` (
   `id_t_spam` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_layanan` int(11) DEFAULT NULL,
   `id_pegawai` int(11) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
+  `jam` time DEFAULT NULL,
   `status` char(1) DEFAULT NULL COMMENT '0=proses, 1=selesai',
+  `id_pasien` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id_t_spam`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `t_spam` */
 
-insert  into `t_spam`(`id_t_spam`,`id_layanan`,`id_pegawai`,`status`,`created_at`,`updated_at`,`deleted_at`) values (1,2,NULL,NULL,'2021-12-08 04:55:08','0000-00-00 00:00:00','0000-00-00 00:00:00'),(2,2,NULL,NULL,'2021-12-08 05:03:25','0000-00-00 00:00:00','0000-00-00 00:00:00');
+insert  into `t_spam`(`id_t_spam`,`id_layanan`,`id_pegawai`,`tanggal`,`jam`,`status`,`id_pasien`,`created_at`,`updated_at`,`deleted_at`) values (1,2,NULL,NULL,NULL,NULL,NULL,'2021-12-08 04:55:08','0000-00-00 00:00:00','0000-00-00 00:00:00'),(2,2,NULL,NULL,NULL,NULL,NULL,'2021-12-08 05:03:25','0000-00-00 00:00:00','0000-00-00 00:00:00'),(3,1,NULL,NULL,NULL,NULL,NULL,'2021-12-08 20:02:07','0000-00-00 00:00:00','0000-00-00 00:00:00'),(4,0,1,'2021-12-08','23:00:00','0',NULL,'2021-12-08 21:02:01','0000-00-00 00:00:00','0000-00-00 00:00:00'),(5,0,0,'2021-12-08','01:13:00','0',NULL,'2021-12-08 21:13:29','0000-00-00 00:00:00','0000-00-00 00:00:00'),(6,1,1,'2021-12-08','02:13:00','0',NULL,'2021-12-08 21:13:46','0000-00-00 00:00:00','0000-00-00 00:00:00');
 
 /*Table structure for table `t_tindakan` */
 

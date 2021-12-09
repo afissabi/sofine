@@ -39,4 +39,40 @@ class M_pasien extends CI_Model
         return $result; 
     }
 
+    public function save($data)
+	{
+		return $this->db->insert($this->_table, $data);	
+	}
+
+    function get_kode_rm($str){
+		// $q = $this->db->query("select MAX(RIGHT(no_rm,6)) as kode_max from ".$this->table."");
+		$q = $this->db->query("select REPLACE(MAX(RIGHT(no_rm,6)),'.','') as kode_max from ".$this->_table."	where no_rm like '".$str."%'");
+		$kd_fix = "";
+		if($q->num_rows()>0){
+			foreach($q->result() as $k){
+				$tmp = ((int)$k->kode_max)+1;
+				//memberi tambahan padding angka 0 dalam 4 string 
+				$kd = sprintf("%04s", $tmp); 
+				// insert string pada huruf ke dua dan param 0 (false untuk hapus lanjutannya)
+				$kd_fix = substr_replace($kd,".",2,0);
+			}
+		}else{
+			$kd_fix = "00.01";
+		}
+		return $str.'.'.$kd_fix;
+	}
+	
+	public function get_max_id_pasien()
+	{
+		$q = $this->db->query("SELECT MAX(id) as kode_max from ".$this->_table."");
+		$kd = "";
+		if($q->num_rows()>0){
+			$kd = $q->row();
+			return (int)$kd->kode_max + 1;
+		}else{
+			return '1';
+		} 
+	}
+
+
 }

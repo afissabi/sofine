@@ -1,4 +1,4 @@
-<div id="pricing" class="pricing-tables">
+<div id="pricing" class="pricing-tables" style="background-image: url(assets/images/bg.svg);">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 offset-lg-2">
@@ -44,18 +44,24 @@
             </div>
         </div>
 
-        <?php foreach ($layanan as $value): ?>
-            <form action="<?php echo site_url('home/save_layanan') ?>" method="post" enctype="multipart/form-data" >
-            <div class="col-lg-4">
-                <div class="box-layanan">
-                    <h4><?php echo $value->nama_layanan ?></h4>
-                    <input type="hidden" name="id_layanan" value="<?php echo $value->id_layanan ?>">
-                    <input class="btn btn-success" type="submit" name="btn" value="Pilih Layanan" />
-                </div>
+        <div class="container">
+            <div class="row">
+                <?php foreach ($layanan as $value): ?>
+                    <div class="col-lg-3">
+                    <form action="<?php echo site_url('home/save_layanan') ?>" method="post" enctype="multipart/form-data" >
+                        <div class="box-layanan">
+                            <h4><?php echo $value->nama_layanan ?></h4>
+                            <input type="hidden" name="id_layanan" value="<?php echo $value->id_layanan ?>">
+                            <input class="btn btn-warning" style="padding: 3px;font-size: 12px;margin-top: 30px;" type="submit" name="btn" value="Pilih Layanan" />
+                        </div>
+                    </form>
+                    </div>
+                <?php endforeach; ?>
             </div>
-            </form>
-        <?php endforeach; ?>
-
+        </div>
+        
+        
+        
       </div>
     </div>
   </div>

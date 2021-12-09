@@ -431,10 +431,6 @@ header
   color: #4b8ef1!important;
 }
 
-.header-area .main-nav .nav li:last-child a.active {
-  color: #fff !important;
-}
-
 .background-header .main-nav .nav li:hover a,
 .background-header .main-nav .nav li a.active {
   color: #4b8ef1!important;
@@ -899,9 +895,16 @@ Banner Style
   overflow: hidden;
 }
 
+.box-layanan{
+  background: #fac89f;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
 .main-banner:after {
   content: '';
-  background-image: url(../images/slider-left-dec.png);
+  background-image: url(../images/bgatas.svg);
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
@@ -1154,7 +1157,7 @@ About Us
 }
 
 .about-us:after {
-  background-image: url(../images/about-bg.jpg);
+  /* background-image: url(../images/about-bg.jpg); */
   width: 777px;
   height: 1132px;
   content: '';
@@ -1571,7 +1574,7 @@ Footer Style
 */
 
 footer {
-  background-image: url(../images/footer-bg.png);
+  background-image: url(../images/bgfooter.svg);
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;

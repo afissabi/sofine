@@ -162,11 +162,45 @@ class Home extends CI_Controller {
 		$this->load->view('v_template', $data);
     }
 
-	public function save_data()
+	public function thanks($id_spam)
     {
-		$regis = $this->t_registrasi;
+		$content = 'v_thanks';
+		$spam = $this->t_spam->getById($id_spam);
+		$layanan = $this->m_layanan->getById($spam->id_layanan);
+		$dokter = $this->m_pegawai->getById($spam->id_pegawai);
+ 
+		$data = [
+			'content' =>  $content,
+			'layanan' =>  $layanan,
+			'dokter'  =>  $dokter,
+			'spam' 	  => $this->t_spam->getById($id_spam),
+		];
+		
+		$this->load->view('v_template', $data);
+    }
 
-		$regis->saveregis();
+	public function save_register()
+    {
+		$obj_date = new DateTime();
+		$timestamp = $obj_date->format('Y-m-d H:i:s');
+
+		$id_pasien = $this->input->post('id_pasien');
+		$tanggal_reg = $this->input->post('tanggal');
+		$jam_reg = $this->input->post('jam');
+		$id_pegawai = $this->input->post('id_pegawai');
+		$kpx = $this->input->post('kpx');
+
+		$no_reg = $this->t_registrasi->get_kode_reg();
+
+		$registrasi = [
+			'id_pasien' => $id_pasien,
+			'tanggal_reg' => $tanggal_reg,
+			'jam_reg' => $jam_reg,
+			'id_pegawai' => $id_pegawai,
+			'no_reg' => $no_reg,
+		];
+
+		$this->t_registrasi->save($registrasi);
 		$this->session->set_flashdata('success', 'Berhasil disimpan');
     }
 
@@ -174,27 +208,65 @@ class Home extends CI_Controller {
 	{
 		$obj_date = new DateTime();
 		$timestamp = $obj_date->format('Y-m-d H:i:s');
+		$kpx = $this->input->post('kpx');
 
-		$id_pasien = $this->input->post('id_pasien');
-		$tanggal_reg = contul($this->input->post('tanggal'));
-		$jam_reg = contul($this->input->post('jam'));
-		$id_pegawai = contul($this->input->post('id_pegawai'));
-
-		$this->db->trans_begin();
+		if($kpx == 1){
+			$id_pasien = $this->input->post('id_pasien');
+		}else{
+			$id_pasien = $this->m_pasien->get_max_id_pasien();
+		}
 		
+		$tanggal_reg = $this->input->post('tanggal');
+		$jam_reg = $this->input->post('jam');
+		$id_pegawai = $this->input->post('id_pegawai');
+		
+		if($kpx = 2){
+			$nama = trim(strtoupper($this->input->post('nama2')));
+			$tempat_lahir = $this->input->post('tempat_lahir2');
+			$tanggal_lahir = $this->input->post('tgl_lahir2');
+			$nik = $this->input->post('nik2');
+			$jenis_kelamin = $this->input->post('jenis_kelamin2');
+			$suku = $this->input->post('suku2');
+			$pekerjaan = $this->input->post('kerja2');
+			$alamat_rumah = $this->input->post('alamat_rumah2');
+			$telp_rumah = $this->input->post('telp2');
+			$alamat_kantor = $this->input->post('alamat_kantor2');
+			$hp = $this->input->post('hp2');
+
+			$pasien = [
+				'nama' => $nama,
+				'tempat_lahir' => $tempat_lahir,
+				'tanggal_lahir' => $tanggal_lahir,
+				'nik' => $nik,
+				'jenis_kelamin' => $jenis_kelamin,
+				'suku' => $suku,
+				'pekerjaan' => $pekerjaan,
+				'alamat_rumah' => $alamat_rumah,
+				'telp_rumah' => $telp_rumah,
+				'alamat_kantor' => $alamat_kantor,
+				'hp' => $hp,
+				'is_aktif' => 1,
+			];	
+
+			$pasien['id'] = $id_pasien;
+			$pasien['no_rm'] = $this->m_pasien->get_kode_rm(substr($nama,0,2));
+			$pasien['created_at'] = $timestamp;
+
+			$insert = $this->m_pasien->save($pasien);
+		}
+
 		$registrasi = [
 			'id_pasien' => $id_pasien,
-			'tanggal_reg' => $obj_date->createFromFormat('d/m/Y', $tanggal_reg)->format('Y-m-d'),
+			'tanggal_reg' => $tanggal_reg,
 			'jam_reg' => $jam_reg,
-			'id_pegawai' => $id_pegawai
+			'id_pegawai' => $id_pegawai,
 		];
 
-		###insert
-		$registrasi['id'] = $this->t_registrasi->get_max_id();
-		$registrasi['no_reg'] = $this->t_registrasi->get_kode_reg();
-		$registrasi['created_at'] = $timestamp;
-		$insert = $this->t_registrasi->save($registrasi);
-		$pesan = 'Sukses Menambah data Registrasi';
+			$registrasi['id'] = $this->t_registrasi->get_max_id();
+			$registrasi['no_reg'] = $this->t_registrasi->get_kode_reg();
+			$registrasi['created_at'] = $timestamp;
+			$insert = $this->t_registrasi->save($registrasi);
+			$pesan = 'Sukses Menambah data Registrasi';
 				
 		if ($this->db->trans_status() === FALSE){
 			$this->db->trans_rollback();
@@ -207,6 +279,7 @@ class Home extends CI_Controller {
 		}
 
 		echo json_encode($retval);
+
 	}
 
 	public function search(){

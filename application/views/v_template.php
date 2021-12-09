@@ -245,7 +245,6 @@ https://templatemo.com/tm-570-chain-app-dev
         }
       })
 
-      
       Swal.fire({
         title: "Konfirmasi Pendaftaran ?",
         text: "Data Akan Disimpan",
@@ -263,7 +262,7 @@ https://templatemo.com/tm-570-chain-app-dev
           $.ajax({
             type: "POST",
             enctype: "multipart/form-data",
-            url: base_url + "home/simpan_data",
+            url: baseurl + "home/simpan_data",
             data: e,
             dataType: "JSON",
             processData: !1,
@@ -274,7 +273,7 @@ https://templatemo.com/tm-570-chain-app-dev
               if (a.status) Swal.fire("Sukses!!", a.pesan, "success"),
               $("#btnSave").prop("disabled", !1),
               $("#btnSave").text("Simpan"), 
-              window.location.href = base_url + "thanks";
+              window.location.href = baseurl + "home/thanks";
               else {
                 for (var e = 0; e < a.inputerror.length; e++) 0 == a.is_select2[e] ? ($('[name="' + a.inputerror[e] + '"]').addClass("is-invalid"),
                 $('[name="' + a.inputerror[e] + '"]').next().text(a.error_string[e])
