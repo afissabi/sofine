@@ -30,9 +30,21 @@ https://templatemo.com/tm-570-chain-app-dev
     <link href="<?php echo base_url();?>assets/css/templatemo-chain-app-dev.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/css/animated.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/css/owl.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/css/style-calendar.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/css/datepicker.css" rel="stylesheet">
     <script>
       var baseurl = "<?php echo base_url("index.php/"); ?>";
     </script>
+      <!-- Scripts -->
+  <script src="<?php echo base_url();?>assets/vendor/jquery/jquery.min.js"></script>
+  <script src="<?php echo base_url();?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?php echo base_url();?>assets/js/owl-carousel.js"></script>
+  <script src="<?php echo base_url();?>assets/js/animation.js"></script>
+  <script src="<?php echo base_url();?>assets/js/imagesloaded.js"></script>
+  <script src="<?php echo base_url();?>assets/js/popup.js"></script>
+  <script src="<?php echo base_url();?>assets/js/custom.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
       
       .timeline-steps {
@@ -131,15 +143,7 @@ https://templatemo.com/tm-570-chain-app-dev
   <?php $this->load->view('v_footer'); ?>
 
 
-  <!-- Scripts -->
-  <script src="<?php echo base_url();?>assets/vendor/jquery/jquery.min.js"></script>
-  <script src="<?php echo base_url();?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="<?php echo base_url();?>assets/js/owl-carousel.js"></script>
-  <script src="<?php echo base_url();?>assets/js/animation.js"></script>
-  <script src="<?php echo base_url();?>assets/js/imagesloaded.js"></script>
-  <script src="<?php echo base_url();?>assets/js/popup.js"></script>
-  <script src="<?php echo base_url();?>assets/js/custom.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
   <script type="text/javascript">
     function search(){
