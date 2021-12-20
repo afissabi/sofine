@@ -24,12 +24,12 @@ class Calendar extends CI_Controller {
 
 		$data['content'] = 'v_calendar';
 
-		$this->load->view('v_template', $data, FALSE);
+		$this->load->view('v_template_backup', $data, FALSE);
 	}
 
     public function load_view()
     {
-        $phpCalendar = new PHPCalendar ();
+        $phpCalendar = new PHPCalendar ('2021-12-17');
 
         $calendarHTML = $phpCalendar->getCalendarHTML();
         echo $calendarHTML;

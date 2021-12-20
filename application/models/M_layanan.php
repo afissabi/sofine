@@ -8,6 +8,7 @@ class M_layanan extends CI_Model
     public $kode_layanan;
     public $nama_layanan;
     public $keterangan;
+    public $dokter;
     public $waktu_layanan;
 
     public function rules()
@@ -33,28 +34,4 @@ class M_layanan extends CI_Model
         return $this->db->get_where($this->_layanan, ["id_layanan" => $id])->row();
     }
 
-    public function save()
-    {
-        $post = $this->input->post();
-        $this->product_id = uniqid();
-        $this->name = $post["name"];
-        $this->price = $post["price"];
-        $this->description = $post["description"];
-        return $this->db->insert($this->_layanan, $this);
-    }
-
-    public function update()
-    {
-        $post = $this->input->post();
-        $this->product_id = $post["id"];
-        $this->name = $post["name"];
-        $this->price = $post["price"];
-        $this->description = $post["description"];
-        return $this->db->update($this->_layanan, $this, array('product_id' => $post['id']));
-    }
-
-    public function delete($id)
-    {
-        return $this->db->delete($this->_layanan, array("product_id" => $id));
-    }
 }
