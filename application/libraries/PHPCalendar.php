@@ -81,6 +81,7 @@ class PHPCalendar {
 					$this->currentDay ++;
 				}
 				$weekDays .= '<td class="disabled disabled-date day">' . $cellValue . '</td>';
+                // $weekDays .= '<td class="day">' . $cellValue . '</td>';
 			}
             $weekDays .= '</tr>';
 		}
