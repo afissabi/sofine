@@ -18,27 +18,27 @@
                     <h5>Anda akan melakukan pendaftaran untuk :</h5>
                 </div>
                 <div class="row text-center align-items-center">
-                    <div class="col-lg-3 py-3 widget-box" style="height: 180px;">
+                    <div class="col-lg-3 py-3 widget-box" style="height: 180px;background: #e9d86ac4;background-image: url(assets/img/bg_pattern.svg);">
                         <div class="display-4 text-center text-primary">
                             <span class="fa fa-hospital-o" style="font-size: 45px;min-height: 55px;"></span>
                             <p class="mb-3 font-weight-medium text-md" style="max-height: 30px;">KLINIK <br><?php echo $klinik->nama_klinik ?></p>
                             <p class="mb-0 text-secondary" style="font-size: 12px;"><?php echo $klinik->alamat ?></p>
                         </div>
                     </div>
-                    <div class="col-lg-3 py-3 widget-box" style="height: 180px;">
+                    <div class="col-lg-3 py-3 widget-box" style="height: 180px;background: #e9d86ac4;background-image: url(assets/img/bg_pattern.svg);">
                         <div class="display-4 text-center text-primary">
                             <span class="fa fa-medkit" style="font-size: 45px;min-height: 55px;"></span>
                             <p class="mb-3 font-weight-medium text-md" style="max-height: 30px;">LAYANAN <br> <?php echo $layanan->nama_layanan ?></p>
                             <p class="mb-0 text-secondary" style="font-size: 12px;"><?php echo $layanan->keterangan ?></p>
                         </div>
                     </div>
-                    <div class="col-lg-3 py-3 widget-box" style="height: 180px;">
+                    <div class="col-lg-3 py-3 widget-box" style="height: 180px;background: #e9d86ac4;background-image: url(assets/img/bg_pattern.svg);">
                         <div class="display-4 text-center text-primary">
                             <span class="fa fa-user-md" style="font-size: 45px;min-height: 55px;"></span>
                             <p class="mb-3 font-weight-medium text-md" style="max-height: 30px;">DOKTER <br> <?php echo $dokter->nama ?></p>
                         </div>
                     </div>
-                    <div class="col-lg-3 py-3 widget-box" style="height: 180px;">
+                    <div class="col-lg-3 py-3 widget-box" style="height: 180px;background: #e9d86ac4;background-image: url(assets/img/bg_pattern.svg);">
                         <div class="display-4 text-center text-primary">
                             <span class="fa fa-calendar" style="font-size: 45px;min-height: 55px;"></span>
                             <p class="mb-3 font-weight-medium text-md" style="max-height: 30px;">JADWAL <br> Tanggal : <?php echo $jadwal->tanggal ?> <br> Pukul : <?php echo $jam ?> WIB</p>
