@@ -1521,7 +1521,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 .banner-seo-check {
   padding: 0;
-  background-image: radial-gradient(circle, #c59042 15%, #644416);
+  background-image: radial-gradient(circle, #dead66 15%, #e49c34);
   color: #675858;
   border-radius: 0px 0px 40px 40px;
 }
