@@ -2,103 +2,141 @@
 <html lang="id, in">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Sofine Clinic</title>
+  <title>Sofine Dental Care</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-    <link href="<?php echo base_url(); ?>assets/css/maicons.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/vendor/animate/animate.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/css/theme.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/font-awesome/css/font-awesome.min.css'; ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/plugins/fullcalendar/fullcalendar.css'; ?>">
+  <!-- Favicons -->
+  <link href="<?php echo base_url(); ?>assets/vendor/aos/aos.cssassets/img/favicon.png" rel="icon">
+  <link href="<?php echo base_url(); ?>assets/vendor/aos/aos.cssassets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="<?php echo base_url(); ?>assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/plugins/fullcalendar/fullcalendar.css'; ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css'; ?>">
 
-    <style>
-        @font-face /*perintah untuk memanggil font eksternal*/
-        {
-            font-family: 'Popins'; /*memberikan nama bebas untuk font*/
-            src: url('Poppins/Poppins-Light.ttf');/*memanggil file font eksternalnya di folder nexa*/
-        }
-
-    </style>
-
+  <!-- Template Main CSS File -->
+  <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <!-- Back to top button -->
-    <div class="back-to-top"></div>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white sticky" style="max-height: 75px;background-color: #ffffff !important;box-shadow: 0px 0px 5px 0px #504126;">
-            <div class="container">
-                <a href="#" class="navbar-brand"><img src="<?php echo base_url(); ?>assets/img/logo.png" alt="Logo"></a>
 
-                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center">
 
-                <div class="navbar-collapse collapse" id="navbarContent">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+      <h1 class="logo me-auto"><a href="index.html">SOFINE</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="<?php echo base_url(); ?>">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
     <?php
-    if (isset($content)) {
-
-        $this->load->view($content);
-    }
+        if (isset($content)) {
+            $this->load->view($content);
+        }
     ?>
+  </main>
 
-    <footer class="page-footer bg-image" style="background-image: url(assets/img/dental.png);">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-lg-3 py-3">
-                    <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="Logo" style="background: antiquewhite;border-radius: 10px;">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero amet, repellendus eius blanditiis in iusto eligendi iure.</p>
-                </div>
-                <div class="col-lg-3 py-3">
-                    <h5>Contact Us</h5>
-                    <p>203 Fake St. Mountain View, San Francisco, California, USA</p>
-                    <a href="#" class="footer-link">+00 1122 3344 5566</a>
-                    <a href="#" class="footer-link">seogram@temporary.com</a>
-                </div>
-                <div class="col-lg-3 py-3">
-                </div>
-                <div class="col-lg-3 py-3">
-                    <h5>Cabang Kami</h5>
-                    <p>Get updates, news or events on your mail.</p>
-                    <form action="#">
-                        <input type="text" class="form-control" placeholder="Enter your email..">
-                        <button type="submit" class="btn btn-success btn-block mt-2">Subscribe</button>
-                    </form>
-                </div>
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>SOFINE</h3>
+            <p>
+              Jl. Simo Jawar No.35D <br>
+              Simomulyo, Kec. Sukomanunggal<br>
+              Kota SBY, Jawa Timur 60281<br><br>
+              <strong>Phone:</strong> 0822-2823-2675<br>
+              <strong>Web:</strong> sofineclinic.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+          
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Layanan Kami</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#"></a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Social Networks</h4>
+            <p>Temukan kami di media sosial</p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
             </div>
+          </div>
 
-            <p class="text-center" id="copyright">Copyright &copy; 2021. Developed by <a href="" target="_blank">Melek Aplikasi</a></p>
         </div>
-    </footer>
+      </div>
+    </div>
 
-    <script src="<?php echo base_url(); ?>assets/js/jquery-3.5.1.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/bootstrap.bundle.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/google-maps.js"></script>
-    <script src="<?php echo base_url(); ?>assets/vendor/wow/wow.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/theme.js"></script>
-    <script type="text/javascript" src="<?php echo base_url().'assets/js/jquery.min.js'; ?>"></script>      
-    <script type="text/javascript" src="<?php echo base_url().'assets/js/moment.min.js'; ?>"></script>      
-    <script type="text/javascript" src="<?php echo base_url().'assets/js/bootstrap.min.js'; ?>"></script>      
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>SOFINE</span></strong> dental care
+      </div>
+      <div class="credits">
+        Designed by <a href="">Melek Aplikasi</a>
+      </div>
+
+    
+    
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="<?php echo base_url(); ?>assets/vendor/aos/aos.js"></script>
+  <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/vendor/php-email-form/validate.js"></script>
+  <script src="<?php echo base_url(); ?>assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js1/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url().'assets/js1/jquery.min.js'; ?>"></script>      
+    <script type="text/javascript" src="<?php echo base_url().'assets/js1/moment.min.js'; ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url().'assets/js1/bootstrap.min.js'; ?>"></script>      
     <script type="text/javascript" src="<?php echo base_url().'assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js'; ?>"></script>      
     <script type="text/javascript" src="<?php echo base_url().'assets/plugins/fullcalendar/fullcalendar.js'; ?>"></script> 
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Template Main JS File -->
+  <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
     var get_data        = '<?php echo $get_data; ?>';
     var backend_url     = '<?php echo base_url(); ?>';

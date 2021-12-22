@@ -1,154 +1,192 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id, in">
 
-  <head>
-
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Chain App Dev - App Landing Page HTML5 Template</title>
+    <title>Sofine Clinic</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="<?php echo base_url();?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/maicons.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/vendor/animate/animate.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/theme.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/font-awesome/css/font-awesome.min.css'; ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/plugins/fullcalendar/fullcalendar.css'; ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css'; ?>">
 
-<!--
-
-TemplateMo 570 Chain App Dev
-
-https://templatemo.com/tm-570-chain-app-dev
-
--->
-
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link href="<?php echo base_url();?>assets/css/templatemo-chain-app-dev.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>assets/css/animated.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>assets/css/owl.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>assets/css/style-calendar.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>assets/css/datepicker.css" rel="stylesheet">
-    <script>
-      var baseurl = "<?php echo base_url("index.php/"); ?>";
-    </script>
-      <!-- Scripts -->
-  <script src="<?php echo base_url();?>assets/vendor/jquery/jquery.min.js"></script>
-  <script src="<?php echo base_url();?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="<?php echo base_url();?>assets/js/owl-carousel.js"></script>
-  <script src="<?php echo base_url();?>assets/js/animation.js"></script>
-  <script src="<?php echo base_url();?>assets/js/imagesloaded.js"></script>
-  <script src="<?php echo base_url();?>assets/js/popup.js"></script>
-  <script src="<?php echo base_url();?>assets/js/custom.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-      
-      .timeline-steps {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap
-      }
-
-      .timeline-steps .timeline-step {
-          align-items: center;
-          display: flex;
-          flex-direction: column;
-          position: relative;
-          margin: 1rem
-      }
-
-      @media (min-width:768px) {
-          .timeline-steps .timeline-step:not(:last-child):after {
-              content: "";
-              display: block;
-              border-top: .25rem dotted #3b82f6;
-              width: 3.46rem;
-              position: absolute;
-              left: 7.5rem;
-              top: .3125rem
-          }
-          .timeline-steps .timeline-step:not(:first-child):before {
-              content: "";
-              display: block;
-              border-top: .25rem dotted #3b82f6;
-              width: 3.8125rem;
-              position: absolute;
-              right: 7.5rem;
-              top: .3125rem
-          }
-      }
-
-      .timeline-steps .timeline-content {
-          width: 10rem;
-          text-align: center
-      }
-
-      .timeline-steps .timeline-content .inner-circle {
-          border-radius: 1.5rem;
-          height: 1rem;
-          width: 1rem;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          background-color: #3b82f6
-      }
-
-      .tab_active {
-        background-color: #ff0303 !important;
-      }
-
-      .timeline-steps .timeline-content .inner-circle:before {
-          content: "";
-          background-color: #5cc700;
-          display: inline-block;
-          height: 3rem;
-          width: 3rem;
-          min-width: 3rem;
-          border-radius: 6.25rem;
-          opacity: .5
-      }
+        @font-face /*perintah untuk memanggil font eksternal*/
+        {
+            font-family: 'Popins'; /*memberikan nama bebas untuk font*/
+            src: url('Poppins/Poppins-Light.ttf');/*memanggil file font eksternalnya di folder nexa*/
+        }
 
     </style>
-  </head>
+
+</head>
 
 <body>
-  <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
+    <!-- Back to top button -->
+    <div class="back-to-top"></div>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white sticky" style="max-height: 75px;background-color: #ffffff !important;box-shadow: 0px 0px 5px 0px #504126;">
+            <div class="container">
+                <a href="#" class="navbar-brand"><img src="<?php echo base_url(); ?>assets/img/logo.png" alt="Logo"></a>
 
-  <!-- ***** Header Area Start ***** -->
-  <?php $this->load->view('v_header'); ?>
-  <!-- ***** Header Area End ***** -->
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-  <?php
-        if (isset($content)) {
-            
-            $this->load->view($content); 
-        }
+                <div class="navbar-collapse collapse" id="navbarContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <?php
+    if (isset($content)) {
+
+        $this->load->view($content);
+    }
     ?>
-  
-  <?php $this->load->view('v_footer'); ?>
 
-  <script type="text/javascript">
+    <footer class="page-footer bg-image" style="background-image: url(assets/img/dental.png);">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-3 py-3">
+                    <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="Logo" style="background: antiquewhite;border-radius: 10px;">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero amet, repellendus eius blanditiis in iusto eligendi iure.</p>
+                </div>
+                <div class="col-lg-3 py-3">
+                    <h5>Contact Us</h5>
+                    <p>203 Fake St. Mountain View, San Francisco, California, USA</p>
+                    <a href="#" class="footer-link">+00 1122 3344 5566</a>
+                    <a href="#" class="footer-link">seogram@temporary.com</a>
+                </div>
+                <div class="col-lg-3 py-3">
+                </div>
+                <div class="col-lg-3 py-3">
+                    <h5>Cabang Kami</h5>
+                    <p>Get updates, news or events on your mail.</p>
+                    <form action="#">
+                        <input type="text" class="form-control" placeholder="Enter your email..">
+                        <button type="submit" class="btn btn-success btn-block mt-2">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <p class="text-center" id="copyright">Copyright &copy; 2021. Developed by <a href="" target="_blank">Melek Aplikasi</a></p>
+        </div>
+    </footer>
+
+    <script src="<?php echo base_url(); ?>assets/js1/jquery-3.5.1.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js1/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js1/google-maps.js"></script>
+    <script src="<?php echo base_url(); ?>assets/vendor1/wow/wow.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js1/theme.js"></script>
+    <script type="text/javascript" src="<?php echo base_url().'assets/js1/jquery.min.js'; ?>"></script>      
+    <script type="text/javascript" src="<?php echo base_url().'assets/js1/moment.min.js'; ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url().'assets/js1/bootstrap.min.js'; ?>"></script>      
+    <script type="text/javascript" src="<?php echo base_url().'assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js'; ?>"></script>      
+    <script type="text/javascript" src="<?php echo base_url().'assets/plugins/fullcalendar/fullcalendar.js'; ?>"></script> 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+    var get_data        = '<?php echo $get_data; ?>';
+    var backend_url     = '<?php echo base_url(); ?>';
+
+    $(document).ready(function() {
+        $('.date-picker').datepicker();
+        $('#calendarIO').fullCalendar({
+            header: {
+                left: 'prev',
+                center: 'title',
+                right: 'next'
+            },
+            defaultDate: moment().format('YYYY-MM-DD'),
+            editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                selectable: true,
+                selectHelper: true,
+                select: function(start, end) {
+                
+                },
+                eventDrop: function(event, delta, revertFunc) { // si changement de position
+                    editDropResize(event);
+                },
+                eventResize: function(event,dayDelta,minuteDelta,revertFunc) { // si changement de longueur
+                    editDropResize(event);
+                },
+                eventClick: function(event, element)
+                {
+                    deteil(event);
+                },
+                events: JSON.parse(get_data)
+            });
+
+    });
+
+    function deteil(event)
+    {    
+        $.ajax({
+            url : "<?= base_url()."pendaftaran/pilihjam/" .  $layanan->id_layanan?>",
+            method: 'post',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data    : 'id='+event.id,
+            async: false,
+            success: function (response) {
+                $('#pilihjam').html(response);
+                
+            },
+            error: function(){
+            }
+        });
+    }
+
+    </script>
+    <!-- Search Klinik -->
+    <script>
+        $("#s_klinik").bind('keyup', function() {
+			var term = $(this).val().toLowerCase();
+			$('.v_cari').each(function(){
+                if ($(this).filter(`[data-filter-name*="${term}"]`).length > 0 || term.length < 1) {
+                    $(this).show(500);
+                } else {
+                    $(this).hide(500);
+                }
+            });
+		});
+        
+
+        $("#s_layanan").bind('keyup', function() {
+			var term = $(this).val().toLowerCase();
+			$('.v_cari').each(function(){
+                if ($(this).filter(`[data-filter-name*="${term}"]`).length > 0 || term.length < 1) {
+                    $(this).show(500);
+                } else {
+                    $(this).hide(500);
+                }
+            });
+		});
+
+    </script>
+
+<script type="text/javascript">
     function search(){
       $("#loading").show(); // Tampilkan loadingnya
       
       $.ajax({
-            type: "POST", // Method pengiriman data bisa dengan GET atau POST
-            url: baseurl + "home/search", // Isi dengan url/path file php yang dituju
+            url : "<?= base_url()."pendaftaran/search/"?>",
+            method: 'post',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: {nik : $("#nik").val()}, // data yang akan dikirim ke file proses
             dataType: "json",
             beforeSend: function(e) {
@@ -261,9 +299,9 @@ https://templatemo.com/tm-570-chain-app-dev
           $("#btnSave").prop("disabled", !0),
           $("#btnSave").text("Menyimpan Data"),
           $.ajax({
-            type: "POST",
-            enctype: "multipart/form-data",
-            url: baseurl + "home/simpan_data",
+            url : "<?= base_url()."pendaftaran/simpan_data"?>",
+            method: 'post',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: e,
             dataType: "JSON",
             processData: !1,
@@ -274,7 +312,7 @@ https://templatemo.com/tm-570-chain-app-dev
               if (a.status) Swal.fire("Sukses!!", a.pesan, "success"),
               $("#btnSave").prop("disabled", !1),
               $("#btnSave").text("Simpan"), 
-              window.location.href = baseurl + "home/thanks";
+              window.location.href = "<?= base_url()."pendaftaran/thanks"?>";
               else {
                 for (var e = 0; e < a.inputerror.length; e++) 0 == a.is_select2[e] ? ($('[name="' + a.inputerror[e] + '"]').addClass("is-invalid"),
                 $('[name="' + a.inputerror[e] + '"]').next().text(a.error_string[e])
@@ -306,4 +344,5 @@ https://templatemo.com/tm-570-chain-app-dev
     }
 </script>
 </body>
+
 </html>

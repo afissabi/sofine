@@ -1,37 +1,29 @@
-<div class="page-section banner-seo-check">
-    <div class="wrap bg-image" style="background-image: url(../assets/img/bg_pattern.svg);">
-    <div class="container text-center">
-        <div class="row justify-content-center wow fadeInUp">
-        <div class="col-lg-8">
-            <h2 class="mb-4" id="posisi">Pilih Dokter</h2>
-            <form action="#">
-            <input data-kt-search-element="input" id="s_layanan" type="text" class="form-control" placeholder="Cari di sini . ." style="border-radius: 20px;">
-            </form>
-        </div>
-        </div>
+<!-- ======= Services Section ======= -->
+<section id="services" class="services section-bg" style="margin-top: 35px;">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title">
+      <h2>Pilih Dokter</h2>
+      <input type="text" id="s_klinik" class="form-control" placeholder="Cari di sini . ." style="border-radius: 20px;">
     </div>
-    </div>
-</div>
 
-<div class="page-section">
-    <div class="container">
-      <div class="row" id="content">      
-        <?php foreach ($dokter_list as $value): ?>
-          <?php $dokter  = $this->m_pegawai->getById($value); ?>
-          <div class="col-lg-4 py-3 wow fadeInUp v_cari" data-filter-name="<?php echo strtolower($dokter->nama) ?>">
-            <div class="card-blog">
-              <div class="header">
-                <div class="post-thumb">
-                  <img src="<?php echo base_url().'assets/dist/icon/dokter1.svg';?>" style="width: 100%;background: #cfb17b;" alt="">
-                </div>
-              </div>
-              <div class="body" style="font-family: monospace;background:#fff;">
-                <center><h5 class="text-secondary" style="height: 45px;"><?php echo $dokter->nama ?></h5>
-                <a href="<?= base_url()."pendaftaran/jadwal/" . $klinik->id . "/" . $layanan->id_layanan . "/" . $value ?>" class="btn btn-primary" style="background:#b4945b">Pilih <span class="fa fa-heart"></span></a>
+    <div class="row">
+      <?php foreach ($dokter_list as $value): ?>
+        <?php $dokter  = $this->m_pegawai->getById($value); ?>
+        <div class="col-xl-4 col-md-6 v_cari" data-filter-name="<?php echo strtolower($dokter->nama) ?>" style="margin-bottom: 10px;">
+          <div class="card-blog">
+            <div class="header">
+              <div class="post-thumb">
+                <img src="<?php echo base_url().'assets/dist/icon/dokter1.svg';?>" style="width: 100%;background: #fff;" alt="">
               </div>
             </div>
+            <div class="body" style="font-family: monospace;background:#fff;height: 110px;">
+              <center><h5 class="text-secondary" style="height: 45px;"><?php echo $dokter->nama ?></h5>
+              <a href="<?= base_url()."pendaftaran/jadwal/" . $klinik->id . "/" . $layanan->id_layanan . "/" . $value ?>" class="btn btn-primary" style="background:#b4945b">Pilih Dokter <span class="fa fa-heart"></span></a></center>
+            </div>
           </div>
-        <?php endforeach; ?>
-      </div>
-    </div> <!-- .container -->
-  </div> <!-- .page-section -->
+        </div>
+      <?php endforeach; ?>
+    </div>
+
+  </div>
+</section><!-- End Services Section -->
