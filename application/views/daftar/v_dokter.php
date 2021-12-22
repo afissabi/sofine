@@ -18,15 +18,19 @@
       <div class="row" id="content">      
         <?php foreach ($dokter_list as $value): ?>
           <?php $dokter  = $this->m_pegawai->getById($value); ?>
-        <div class="col-lg-3 v_cari" data-filter-name="<?php echo strtolower($dokter->nama) ?>">
-          <div class="card-service wow fadeInUp" style="min-height: 220px;">
-            <div class="body" style="font-family: monospace;">
-                <span class="fa fa-user-md" style="font-size: 40px;color: burlywood;"></span><br>
-                <h5 class="text-secondary" style="height: 45px;"><?php echo $dokter->nama ?></h5>
+          <div class="col-lg-4 py-3 wow fadeInUp v_cari" data-filter-name="<?php echo strtolower($dokter->nama) ?>">
+            <div class="card-blog">
+              <div class="header">
+                <div class="post-thumb">
+                  <img src="<?php echo base_url().'assets/dist/icon/dokter1.svg';?>" style="width: 100%;background: #cfb17b;" alt="">
+                </div>
+              </div>
+              <div class="body" style="font-family: monospace;background:#fff;">
+                <center><h5 class="text-secondary" style="height: 45px;"><?php echo $dokter->nama ?></h5>
                 <a href="<?= base_url()."pendaftaran/jadwal/" . $klinik->id . "/" . $layanan->id_layanan . "/" . $value ?>" class="btn btn-primary" style="background:#b4945b">Pilih <span class="fa fa-heart"></span></a>
+              </div>
             </div>
           </div>
-        </div>
         <?php endforeach; ?>
       </div>
     </div> <!-- .container -->
