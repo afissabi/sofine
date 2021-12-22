@@ -1523,7 +1523,7 @@ a.text-dark:hover, a.text-dark:focus {
   padding: 0;
   background-image: radial-gradient(circle, #dead66 15%, #e49c34);
   color: #675858;
-  border-radius: 0px 0px 40px 40px;
+  /* border-radius: 0px 0px 40px 40px; */
 }
 
 .banner-seo-check .wrap {
