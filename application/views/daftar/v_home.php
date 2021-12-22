@@ -25,17 +25,20 @@
             <!-- <h2 class="title-section">Cabang Kami <br></h2> -->
             <div class="row" id="content">
               <?php foreach ($klinik as $value): ?>
-              <div class="col-lg-4 v_cari" data-filter-name="<?php echo strtolower($value->nama_klinik) ?>">
-                <div class="card-service wow fadeInUp" style="min-height: 225px;background:#fff;">
-                  <div class="body" style="font-family: monospace;">
-                      <img src="<?php echo base_url().'assets/dist/icon/klinik.svg';?>" width="100" height="100" alt="">
-                      <br>
-                      <h5 class="text-secondary" style="height: 45px;"><?php echo $value->nama_klinik ?></h5>
-                      <p style="font-size: 10pt;"><?php echo $value->alamat ?><br><?php echo $value->telp ?></p>
-                      <a href="<?= base_url()."pendaftaran/layanan/" . $value->id ?>" class="btn btn-primary" style="background:#b4945b">Daftar <span class="fa fa-heart"></span></a>
+                <div class="col-lg-4 py-3 wow fadeInUp v_cari" data-filter-name="<?php echo strtolower($value->nama_klinik) ?>">
+                  <div class="card-blog">
+                    <div class="header">
+                      <div class="post-thumb">
+                        <img src="<?php echo base_url().'assets/dist/icon/klinik.svg';?>" alt="">
+                      </div>
+                    </div>
+                    <div class="body" style="font-family: monospace;background:#fff;">
+                      <center><h5 class="text-secondary" style="height: 45px;"><?php echo $value->nama_klinik ?></h5>
+                      <p style="font-size: 10pt;color:#000;"><?php echo $value->alamat ?><br><?php echo $value->telp ?></p>
+                      <a href="<?= base_url()."pendaftaran/layanan/" . $value->id ?>" class="btn btn-primary" style="background:#b4945b">Daftar <span class="fa fa-heart"></span></a></center>
+                    </div>
                   </div>
                 </div>
-              </div>
               <?php endforeach; ?>
             </div>
           </div>
