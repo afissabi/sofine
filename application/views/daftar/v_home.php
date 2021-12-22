@@ -22,13 +22,13 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-8 py-3 pr-lg-5 wow fadeInUp">
-            <h2 class="title-section">Cabang Kami <br></h2>
+            <!-- <h2 class="title-section">Cabang Kami <br></h2> -->
             <div class="row" id="content">
               <?php foreach ($klinik as $value): ?>
               <div class="col-lg-4 v_cari" data-filter-name="<?php echo strtolower($value->nama_klinik) ?>">
                 <div class="card-service wow fadeInUp" style="min-height: 225px;background:#fff;">
                   <div class="body" style="font-family: monospace;">
-                      <span class="fa fa-hospital-o" style="font-size: 50px;color: burlywood;"></span>
+                      <img src="<?php echo base_url().'assets/dist/icon/klinik.svg';?>" width="100" height="100" alt="">
                       <br>
                       <h5 class="text-secondary" style="height: 45px;"><?php echo $value->nama_klinik ?></h5>
                       <p style="font-size: 10pt;"><?php echo $value->alamat ?><br><?php echo $value->telp ?></p>
