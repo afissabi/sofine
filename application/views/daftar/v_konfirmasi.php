@@ -3,50 +3,48 @@
   <div class="container" data-aos="fade-up">
     <div class="section-title">
       <h2>Konfirmasi Pendaftaran Anda</h2>
-      <input type="text" id="s_klinik" class="form-control" placeholder="Cari di sini . ." style="border-radius: 20px;">
     </div>
 
     <div class="row">
         <div class="col-xl-3 col-md-6 v_cari" style="margin-bottom: 10px;">
-          <div class="card-blog">
-            <div class="body" style="font-family: monospace;background:#fff;">
-              <center><h5 class="text-secondary">KLINIK</h5>
-              <p style="font-size: 20pt;color:#000;"><?php echo $klinik->nama_klinik ?></p>
-              <p style="font-size: 10pt;color:#000;"><?php echo $klinik->alamat ?></p>
-              </center>
+            <div class="icon-box" style="height: 300px;">
+                <div class="icon">
+                <img src="<?php echo base_url().'assets/dist/icon/klinik.svg';?>" style="width: 100%;background: #fff;" alt="">
+                </div>
+                <center><h5 style="color: #314d97;"><b>KLINIK</b></h5>
+                <p><?php echo $klinik->nama_klinik ?><br><?php echo $klinik->alamat ?></p></center>
             </div>
-          </div>
         </div>
         <div class="col-xl-3 col-md-6 v_cari" style="margin-bottom: 10px;">
-          <div class="card-blog">
-            <div class="body" style="font-family: monospace;background:#fff;">
-              <center><h5 class="text-secondary">LAYANAN</h5>
-              <p style="font-size: 20pt;color:#000;"><?php echo $layanan->nama_layanan ?></p>
-              <p style="font-size: 10pt;color:#000;"><?php echo $layanan->keterangan ?></p>
-              </center>
+            <div class="icon-box" style="height: 300px;">
+                <div class="icon">
+                <img src="<?php echo base_url().'assets/dist/icon/'.$layanan->icon.'.svg';?>" style="width: 100%;background: #fff;" alt="">
+                </div>
+                <center><h5 style="color: #314d97;"><b>LAYANAN</b></h5>
+                <p><?php echo $layanan->nama_layanan ?></p></center>
             </div>
-          </div>
         </div>
         <div class="col-xl-3 col-md-6 v_cari" style="margin-bottom: 10px;">
-          <div class="card-blog">
-            <div class="body" style="font-family: monospace;background:#fff;">
-              <center><h5 class="text-secondary">DOKTER</h5>
-              <p style="font-size: 20pt;color:#000;"><?php echo $dokter->nama ?></p>
-              </center>
+            <div class="icon-box" style="height: 300px;">
+                <div class="icon">
+                <img src="<?php echo base_url().'assets/dist/icon/dokter.svg';?>" style="width: 100%;background: #fff;" alt="">
+                </div>
+                <center><h5 style="color: #314d97;"><b>DOKTER</b></h5>
+                <p><?php echo $dokter->nama ?></p></center>
             </div>
-          </div>
         </div>
         <div class="col-xl-3 col-md-6 v_cari" style="margin-bottom: 10px;">
-          <div class="card-blog">
-            <div class="body" style="font-family: monospace;background:#fff;">
-              <center><h5 class="text-secondary">JADWAL</h5>
-              <p style="font-size: 20pt;color:#000;"><br> Tanggal : <?php echo $jadwal->tanggal ?> <br> Pukul : <?php echo $jam ?> WIB</p>
-              </center>
+            <div class="icon-box" style="height: 300px;">
+                <div class="icon">
+                <img src="<?php echo base_url().'assets/dist/icon/dokter.svg';?>" style="width: 100%;background: #fff;" alt="">
+                </div>
+                <center><h5 style="color: #314d97;"><b>JADWAL</b></h5>
+                <p>Tanggal : <?php echo $jadwal->tanggal ?> <br> Pukul : <?php echo $jam ?> WIB</p></center>
             </div>
-          </div>
         </div>
     </div>
     <div class="row">
+    <div class="icon-box" style="height: auto;">
     <form class="kt-form kt-form--label-right" id="form_registrasi">
         <div class="box-layanan">
         <div class="row form-group">
@@ -198,9 +196,11 @@
             </div>
         </div>
         </div>
+        <br>
         <button type="button" class="btn btn-success" onclick="save()">Simpan</button>
         <a type="button" class="btn btn-secondary" href="<?= base_url($this->uri->segment(1))?>">Batal</a>
     </form>
+    </div>
     </div>
   </div>
 </section><!-- End Services Section -->

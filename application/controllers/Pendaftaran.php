@@ -163,7 +163,7 @@ class Pendaftaran extends CI_Controller {
                 $cek = $this->t_registrasi->cekJam($value,$pasien->id_klinik,$pasien->tanggal);
 
                 if($cek != null){
-                    $res .= '<a href="" onclick="return false;" class="btn btn-danger" style="margin-left:5px;margin-bottom:5px;width: 125px;">'. $value . ' WIB';
+                    $res .= '<a href="" onclick="return false;" class="btn btn-danger" style="margin-left:5px;margin-bottom:5px;width: 125px;background-color: #cfcfcf;border-color: #cfcfcf;">'. $value . ' WIB';
                 }else{
                     $res .= '<a href=' . base_url() . "pendaftaran/konfirmasi/" . $value . "/" . $id_layanan . "/" . $id . ' class="btn btn-success" style="margin-left:5px;margin-bottom:5px;width: 125px;">' . $value . ' WIB';
                 }

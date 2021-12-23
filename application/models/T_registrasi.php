@@ -20,7 +20,7 @@ class T_registrasi extends CI_Model
 
 	public function cekJam($jam, $id_klinik,  $tanggal)
     {
-        return $this->db->get_where($this->_table, ["jam_reg" => $jam, "id_klinik" => $id_klinik,  "tanggal_reg" => '2021-12-19' ])->row();
+        return $this->db->get_where($this->_table, ["jam_reg" => $jam, "id_klinik" => $id_klinik,  "tanggal_reg" => $tanggal ])->row();
     }
 
     public function save($data)
