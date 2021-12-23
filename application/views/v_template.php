@@ -63,7 +63,7 @@
   <!-- ======= Footer ======= -->
   <footer id="footer">
 
-    <div class="footer-top">
+    <div class="footer-top" style="background-image: url(<?php echo base_url().'assets/img/footer.svg';?>);background-repeat: repeat;">
       <div class="container">
         <div class="row">
 

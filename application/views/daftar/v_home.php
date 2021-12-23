@@ -1,5 +1,5 @@
 <!-- ======= Hero Section ======= -->
-<section id="hero" class="d-flex align-items-center" style="background-image: url(assets/img/background.svg);background-repeat: no-repeat;background-size: 100%;">
+<section id="hero" class="d-flex align-items-center" style="background-image: url(assets/img/background.svg);background-repeat: no-repeat;background-size: cover;">
 
 <div class="container">
   <div class="row">
@@ -19,28 +19,26 @@
 </section><!-- End Hero -->
 
 <!-- ======= Services Section ======= -->
-<section id="services" class="services section-bg">
+<section id="services" class="services section-bg" style="background-image: url(assets/img/bg_klinik.svg);background-size: cover;background-repeat-y: repeat;">
   <div class="container" data-aos="fade-up">
 
     <div class="section-title">
       <h2>Pilih Klinik</h2>
-      <input type="text" id="s_klinik" class="form-control" placeholder="Cari di sini . ." style="border-radius: 20px;">
+      <p>Kami memiliki beberapa cabang klinik yang siap memberikan pelayanan terbaik bagi kesehatan gigi anda. </p><br>
+      <input type="text" id="s_klinik" class="form-control" placeholder="Cari di sini . . ." style="border-radius: 20px;">
     </div>
-
+    
     <div class="row">
+    
       <?php foreach ($klinik as $value): ?>
-        <div class="col-xl-4 col-md-6 v_cari" data-filter-name="<?php echo strtolower($value->nama_klinik) ?>">
-          <div class="card-blog">
-            <div class="header">
-              <div class="post-thumb">
-                <img src="<?php echo base_url().'assets/dist/icon/klinik.svg';?>" style="width: 100%;background: #fff;" alt="">
-              </div>
+        <div class="col-xl-3 col-md-6 v_cari" data-filter-name="<?php echo strtolower($value->nama_klinik) ?>">
+          <div class="icon-box">
+            <div class="icon">
+              <img src="<?php echo base_url().'assets/dist/icon/klinik.svg';?>" style="width: 100%;background: #fff;" alt="">
             </div>
-            <div class="body" style="font-family: monospace;background:#fff;height: 160px;">
-              <center><h5 class="text-secondary" style="height: 45px;"><?php echo $value->nama_klinik ?></h5>
-              <p style="font-size: 10pt;color:#000;"><?php echo $value->alamat ?><br><?php echo $value->telp ?></p>
-              <a href="<?= base_url()."pendaftaran/layanan/" . $value->id ?>" class="btn btn-primary" style="background:#b4945b">Daftar <span class="fa fa-heart"></span></a></center>
-            </div>
+            <center><h4><?php echo $value->nama_klinik ?></h4>
+            <p><?php echo $value->alamat ?><br><?php echo $value->telp ?></p>
+            <a href="<?= base_url()."pendaftaran/layanan/" . $value->id ?>" class="btn btn-primary" style="background: #4c879a;border-color: #4c879a;">Daftar <img src="<?php echo base_url().'assets/img/18.svg';?>" style="width: 25px;" alt=""></a></center>
           </div>
         </div>
       <?php endforeach; ?>

@@ -828,14 +828,18 @@ section {
 # Services
 --------------------------------------------------------------*/
 .services .icon-box {
-  box-shadow: 0px 0 25px 0 rgba(0, 0, 0, 0.1);
-  padding: 50px 30px;
-  transition: all ease-in-out 0.4s;
-  background: #fff;
+  box-shadow: 0px 0 8px 0 rgb(0 0 0 / 28%);
+    padding: 50px 30px;
+    transition: all ease-in-out 0.4s;
+    background: #fff;
+    height: 415px;
+    margin-bottom: 10px;
+    border-radius: 30px;
 }
 
 .services .icon-box .icon {
   margin-bottom: 10px;
+  margin-top: -50px;
 }
 
 .services .icon-box .icon i {
@@ -848,6 +852,7 @@ section {
   font-weight: 500;
   margin-bottom: 15px;
   font-size: 24px;
+  min-height: 60px;
 }
 
 .services .icon-box h4 a {
@@ -1682,6 +1687,7 @@ section {
 #footer .footer-top {
   padding: 60px 0 30px 0;
   background: #fff;
+  box-shadow: -5px -4px 4px -4px #0000004d;
 }
 
 #footer .footer-top .footer-contact {
