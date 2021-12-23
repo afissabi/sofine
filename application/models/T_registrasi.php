@@ -91,5 +91,64 @@ class T_registrasi extends CI_Model
 		} 
 	}
 
+    public function getSelectedData($table,$datawhere,$data_like=null, $datawhere_or = null, $datawhere1=null,$wherein=null,$where_in=null,$in=null,$where_sekda=null,$datalike_or=null,$not_in=null,$not_like=null)
+    {
+        $this->db->select('*');
+        if ($datawhere != null) {
+            $this->db->where($datawhere);
+        }
+        if ($data_like != null) {
+           $this->db->like($data_like,false,'after');
+        }
+        if ($datawhere_or != null) {
+            $this->db->or_where($datawhere_or);
+        }
+        if ($datawhere1 != null) {
+            $this->db->where($datawhere1);
+        }
+     //SEMENTARA UNTUK MENAMPILKAN KATEGORI SURAT YANG HANYA SUDAH ADA FORMNYA
+        if ($wherein != null) {
+            $this->db->where_in('id_kategori',$wherein);
+        }
+
+        if ($where_in != null) {
+            $this->db->where_in('id_laporan',$where_in);
+        }
+
+        if ($in != null) {
+            $this->db->where_in('id_detail',$in);
+        }
+
+        if ($where_sekda != null) {
+            $this->db->where_in('id_jabatan',$where_sekda);
+        }
+
+        if ($datalike_or != null) {
+            $this->db->or_like($datalike_or);
+        }
+
+        if($not_in != null){
+            $this->db->where_not_in($not_in);
+        }
+
+        if($not_like != null){
+            $this->db->not_like($not_like);
+        }
+
+        return $this->db->get($table);
+    }
+
+    public function get_regist($id_reg)
+    {
+        $this->db->select('r.*, p.*, k.nama_klinik, k.alamat as alamat_klinik');
+        $this->db->from('t_registrasi r');
+        $this->db->join('m_pasien p', 'p.id=r.id_pasien');
+        $this->db->join('m_klinik k', 'k.id=r.id_klinik');
+        $this->db->where('r.id', $id_reg);
+        $query = $this->db->get();
+        return $query->row();
+
+    }
+
 
 }

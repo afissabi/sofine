@@ -265,7 +265,8 @@ class Pendaftaran extends CI_Controller {
 			'id_pegawai' => $id_pegawai,
 		];
 
-			$registrasi['id'] = $this->t_registrasi->get_max_id();
+			$id = $this->t_registrasi->get_max_id();
+			$registrasi['id'] = $id;
 			$registrasi['no_reg'] = $this->t_registrasi->get_kode_reg();
 			$registrasi['created_at'] = $timestamp;
 			$insert = $this->t_registrasi->save($registrasi);
@@ -277,6 +278,18 @@ class Pendaftaran extends CI_Controller {
 			$retval['pesan'] = 'Gagal memproses Data Registrasi';
 		}else{
 			$this->db->trans_commit();
+			try {
+				$regist = $this->t_registrasi->get_regist($id);
+				$this->load->library('Api_wa');
+				$wa = new Api_wa;
+				$nomor = $regist->hp;
+				$message = 'Hallo Bapak/ibu *'.$regist->nama.'* kami telah menerima pendaftaran anda pada klinik *'.$regist->nama_klinik.'* yang beralamat pada '.$regist->alamat_klinik.' Pada tanggal '.$regist->tanggal_reg.' Pukul '.$regist->jam_reg.' Harap datang tepat waktu. Terimakasih atas kepercayaan anda :)';
+				$hasil = $wa->send($nomor, $message);
+				
+			} catch (Exception $e) {
+			// exception is raised and it'll be handled here
+			// $e->getMessage() contains the error message
+			}
 			$retval['status'] = true;
 			$retval['pesan'] = $pesan;
 		}
