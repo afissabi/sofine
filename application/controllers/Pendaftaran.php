@@ -10,10 +10,13 @@ class Pendaftaran extends CI_Controller {
         $this->load->model("m_layanan");
         $this->load->model("m_klinik");
         $this->load->model("m_pegawai");
+		$this->load->model("m_data_medik");
         $this->load->model("m_pasien");
         $this->load->model("t_registrasi");
         $this->load->model("t_spam");
         $this->load->model("t_jadwaldokter");
+		$this->load->model("t_jadwal_rutin");
+		$this->load->model("t_jadwal_tidak_rutin");
         $this->load->library('PHPCalendar');
     }
 
@@ -88,13 +91,19 @@ class Pendaftaran extends CI_Controller {
         $klinik = $this->m_klinik->getById($jadwal->id_klinik);
         $dokter = $this->m_pegawai->getById($jadwal->id_dokter);
 
+		$start_time    = strtotime ($value);
+		$add_mins  = $layanan->waktu_layanan * 60;
+        $plus = $start_time + $add_mins;
+		$estimasi = date ("H:i", $plus);
+
 		$data = [
-			'content' =>  $content,
-            'jadwal'  =>  $jadwal,
-            'layanan' =>  $layanan,
-            'jam'     =>  $value,
-            'klinik'  =>  $klinik,
-            'dokter'  =>  $dokter,
+			'content' 	=>  $content,
+            'jadwal'  	=>  $jadwal,
+            'layanan' 	=>  $layanan,
+            'jam'     	=>  $value,
+			'estimasi'  =>  $estimasi,
+            'klinik'  	=>  $klinik,
+            'dokter'  	=>  $dokter,
 		];
 
 		$this->load->view('v_template', $data);
@@ -108,7 +117,7 @@ class Pendaftaran extends CI_Controller {
         $dokter = $this->m_pegawai->getById($id_dokter);
         $data_calendar = $this->t_jadwaldokter->getAll($id_dokter,$id);
 		$calendar = array();
-
+		
         foreach ($data_calendar as $key => $val) 
 		{
 			$calendar[] = array(
@@ -156,20 +165,19 @@ class Pendaftaran extends CI_Controller {
             {
                 $array_of_time[] = date ("H:i", $start_time);
                 $start_time += $add_mins;
-            } 
-
-            foreach($array_of_time as $value){
-                // Pengecekan jam di tanggal dan klinik yang dipilih
-                $cek = $this->t_registrasi->cekJam($value,$pasien->id_klinik,$pasien->tanggal);
-
-                if($cek != null){
-                    $res .= '<a href="" onclick="return false;" class="btn btn-danger" style="margin-left:5px;margin-bottom:5px;width: 125px;background-color: #cfcfcf;border-color: #cfcfcf;">'. $value . ' WIB';
-                }else{
-                    $res .= '<a href=' . base_url() . "pendaftaran/konfirmasi/" . $value . "/" . $id_layanan . "/" . $id . ' class="btn btn-success" style="margin-left:5px;margin-bottom:5px;width: 125px;">' . $value . ' WIB';
-                }
-                
             }
-            
+			
+			foreach($array_of_time as $value){
+				$cek = $this->t_registrasi->getAllDaftar($value,$pasien->id_klinik,$pasien->tanggal);
+				
+				if($cek != null){
+					$res .= '<a href="" onclick="return false;" class="btn btn-danger" style="margin-left:5px;margin-bottom:5px;width: 125px;background-color: #cfcfcf;border-color: #cfcfcf;">'. $value . ' WIB';
+				}else{
+					$res .= '<a href=' . base_url() . "pendaftaran/konfirmasi/" . $value . "/" . $id_layanan . "/" . $id . ' class="btn btn-success" style="margin-left:5px;margin-bottom:5px;width: 125px;">' . $value . ' WIB';
+				}
+			}
+
+
             header('Content-Type: application/json');
             echo json_encode($res);
     }
@@ -217,10 +225,28 @@ class Pendaftaran extends CI_Controller {
 		
 		$tanggal_reg = $this->input->post('tanggal');
 		$jam_reg = $this->input->post('jam');
+		$estimasi = $this->input->post('estimasi');
 		$id_pegawai = $this->input->post('id_pegawai');
 		$id_klinik = $this->input->post('id_klinik');
 		$id_layanan = $this->input->post('id_layanan');
-		
+		$penyakit_jantung = $this->input->post('penyakit_jantung');
+		$diabetes = $this->input->post('diabetes');
+		$haemopilia = $this->input->post('haemopilia');
+		$hepatitis = $this->input->post('hepatitis');
+		$gastring = $this->input->post('gastring');
+		$hamil = $this->input->post('hamil');
+		$penyakit_lainnya = $this->input->post('penyakit_lainnya');
+
+		$medik = [
+			'penyakit_jantung' => $penyakit_jantung,
+			'diabetes' => $diabetes,
+			'haemopilia' => $haemopilia,
+			'hepatitis' => $hepatitis,
+			'gastring' => $gastring,
+			'hamil' => $hamil,
+			'penyakit_lainnya' => $penyakit_lainnya,
+		];
+
 		if($kpx == 2){
 			$nama = trim(strtoupper($this->input->post('nama2')));
 			$tempat_lahir = $this->input->post('tempat_lahir2');
@@ -254,6 +280,18 @@ class Pendaftaran extends CI_Controller {
 			$pasien['created_at'] = $timestamp;
 
 			$insert = $this->m_pasien->save($pasien);
+
+			$medik['id'] = $this->m_data_medik->get_max_id_medik();
+			$medik['id_pasien'] = $id_pasien;
+			$medik['created_at'] = $timestamp;
+
+			$insert = $this->m_data_medik->save($medik);
+		}else{
+			$cek_medik = $this->m_data_medik->get_by_condition(['id_pasien' => $id_pasien], true);
+			$medik['updated_at'] = $timestamp;
+
+			$where = ['id' => $cek_medik->id];
+			$update = $this->m_data_medik->update($where, $medik);
 		}
 
 		$registrasi = [
@@ -262,6 +300,7 @@ class Pendaftaran extends CI_Controller {
 			'id_pasien' => $id_pasien,
 			'tanggal_reg' => $tanggal_reg,
 			'jam_reg' => $jam_reg,
+			'estimasi_selesai' => $estimasi,
 			'id_pegawai' => $id_pegawai,
 		];
 
@@ -279,12 +318,12 @@ class Pendaftaran extends CI_Controller {
 		}else{
 			$this->db->trans_commit();
 			try {
-				$regist = $this->t_registrasi->get_regist($id);
-				$this->load->library('Api_wa');
-				$wa = new Api_wa;
-				$nomor = $regist->hp;
-				$message = 'Hallo Bapak/ibu *'.$regist->nama.'* kami telah menerima pendaftaran anda pada klinik *'.$regist->nama_klinik.'* yang beralamat pada '.$regist->alamat_klinik.' Pada tanggal '.$regist->tanggal_reg.' Pukul '.$regist->jam_reg.' Harap datang tepat waktu. Terimakasih atas kepercayaan anda :)';
-				$hasil = $wa->send($nomor, $message);
+				// $regist = $this->t_registrasi->get_regist($id);
+				// $this->load->library('Api_wa');
+				// $wa = new Api_wa;
+				// $nomor = $regist->hp;
+				// $message = 'Hallo Bapak/ibu *'.$regist->nama.'* Berikut adalah detail registrasi anda  *'.$regist->nama_klinik.'* yang beralamat pada '.$regist->alamat_klinik.' Pada tanggal '.$regist->tanggal_reg.' Pukul '.$regist->jam_reg.' Harap datang tepat waktu. Terimakasih atas kepercayaan anda :)';
+				// $hasil = $wa->send($nomor, $message);
 				
 			} catch (Exception $e) {
 			// exception is raised and it'll be handled here

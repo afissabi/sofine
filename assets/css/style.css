@@ -114,7 +114,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.5s;
   z-index: 997;
   padding: 15px 0;
-  background: #e7cfc4;
+  background: #fff2ed;
 }
 
 #header.header-scrolled, #header.header-inner-pages {
@@ -832,7 +832,7 @@ section {
     padding: 50px 30px;
     transition: all ease-in-out 0.4s;
     background: #fff;
-    height: 415px;
+    height: auto;
     margin-bottom: 10px;
     border-radius: 30px;
 }
@@ -852,7 +852,7 @@ section {
   font-weight: 500;
   margin-bottom: 15px;
   font-size: 24px;
-  min-height: 60px;
+  min-height: 25px;
 }
 
 .services .icon-box h4 a {

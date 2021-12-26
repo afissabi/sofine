@@ -18,9 +18,38 @@ class T_registrasi extends CI_Model
         return $this->db->get($this->_table)->result();
     }
 
+    public function getAllReg($id_klinik,  $tanggal)
+    {
+        $this->db->group_by("jam_reg");
+        return $this->db->get_where($this->_table, ["id_klinik" => $id_klinik,  "tanggal_reg" => $tanggal ])->result();
+    }
+
+    public function getAllDaftar($jam, $id_klinik, $tanggal)
+    {
+        return $this->db->get_where($this->_table, ["jam_reg" => $jam, "id_klinik" => $id_klinik,  "tanggal_reg" => $tanggal ])->row();
+    }
+    
 	public function cekJam($jam, $id_klinik,  $tanggal)
     {
         return $this->db->get_where($this->_table, ["jam_reg" => $jam, "id_klinik" => $id_klinik,  "tanggal_reg" => $tanggal ])->row();
+    }
+
+    public function antaraJam($id_klinik, $tanggal, $jam_reg, $estimasi_selesai)
+    {
+        // $this->db->where("'$jam' >= '$jam_reg'");
+        // $this->db->where("'$jam' <= '$estimasi_selesai'");
+        $this->db->where("jam_reg BETWEEN '$jam_reg' AND '$estimasi_selesai'");
+        $this->db->where("estimasi_selesai BETWEEN '$jam_reg' AND '$estimasi_selesai'");
+        return $this->db->get_where($this->_table, ["id_klinik" => $id_klinik,  "tanggal_reg" => $tanggal ])->row();
+        // print_r($this->db->last_query());
+    }
+
+    public function antara($jam ,$id_klinik, $tanggal, $jam_reg, $estimasi_selesai)
+    {
+        $this->db->where("'$jam' > '$jam_reg'");
+        $this->db->where("'$jam' < '$estimasi_selesai'");
+        return $this->db->get_where($this->_table, ["id_klinik" => $id_klinik,  "tanggal_reg" => $tanggal ])->row();
+        // print_r($this->db->last_query());
     }
 
     public function save($data)

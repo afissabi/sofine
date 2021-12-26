@@ -279,6 +279,7 @@
       if ( $(this).val() == "1") {
 
           $("#pasien1").show();
+          $("#medis").show();
 
       }else{
         
@@ -288,10 +289,11 @@
         if ( $(this).val() == "2") {
 
       $("#pasien2").show();
-
+        $("#medis").show();
       }else{
 
         $("#pasien2").hide();
+        
       }
     });
 </script>
