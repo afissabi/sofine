@@ -46,7 +46,7 @@
                     </div>
                     <center>
                         <h5 style="color: #314d97;"><b>JADWAL</b></h5>
-                        <p>Tanggal : <?php echo $jadwal->tanggal ?> <br> Pukul : <?php echo $jam ?> WIB</p>
+                        <p>Tanggal : <?php echo $tanggal ?> <br> Pukul : <?php echo $jam ?> WIB</p>
                     </center>
                 </div>
             </div>
@@ -66,10 +66,10 @@
                             </div>
                         </div>
 
-                        <input type="hidden" name="id_pegawai" value="<?php echo $jadwal->id_dokter ?>">
-                        <input type="hidden" name="id_klinik" value="<?php echo $jadwal->id_klinik ?>">
+                        <input type="hidden" name="id_pegawai" value="<?php echo $dokter->id ?>">
+                        <input type="hidden" name="id_klinik" value="<?php echo $klinik->id ?>">
                         <input type="hidden" name="id_layanan" value="<?php echo $layanan->id_layanan ?>">
-                        <input type="hidden" name="tanggal" value="<?php echo $jadwal->tanggal ?>">
+                        <input type="hidden" name="tanggal" value="<?php echo $tanggal ?>">
                         <input type="hidden" name="jam" value="<?php echo $jam ?>">
                         <input type="hidden" name="estimasi" value="<?php echo $estimasi ?>">
 

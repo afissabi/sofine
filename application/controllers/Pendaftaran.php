@@ -83,13 +83,13 @@ class Pendaftaran extends CI_Controller {
 		$this->load->view('v_template', $data);
 	}
 
-    public function konfirmasi($value, $id_layanan, $id_log)
+    public function konfirmasi($value, $id_layanan, $id_klinik, $id_dokter, $tanggal)
 	{
 		$content = 'daftar/v_konfirmasi';
-        $jadwal = $this->t_jadwaldokter->getById($id_log);
+        // $jadwal = $this->t_jadwaldokter->getById($id_log);
         $layanan = $this->m_layanan->getById($id_layanan);
-        $klinik = $this->m_klinik->getById($jadwal->id_klinik);
-        $dokter = $this->m_pegawai->getById($jadwal->id_dokter);
+        $klinik = $this->m_klinik->getById($id_klinik);
+        $dokter = $this->m_pegawai->getById($id_dokter);
 
 		$start_time    = strtotime ($value);
 		$add_mins  = $layanan->waktu_layanan * 60;
@@ -98,7 +98,7 @@ class Pendaftaran extends CI_Controller {
 
 		$data = [
 			'content' 	=>  $content,
-            'jadwal'  	=>  $jadwal,
+            'tanggal'  	=>  $tanggal,
             'layanan' 	=>  $layanan,
             'jam'     	=>  $value,
 			'estimasi'  =>  $estimasi,
@@ -115,17 +115,54 @@ class Pendaftaran extends CI_Controller {
         $klinik = $this->m_klinik->getById($id);
         $layanan = $this->m_layanan->getById($id_layanan);
         $dokter = $this->m_pegawai->getById($id_dokter);
-        $data_calendar = $this->t_jadwaldokter->getAll($id_dokter,$id);
+        // $data_calendar = $this->t_jadwaldokter->getAll($id_dokter,$id);
 		$calendar = array();
+
+		// Menentukan Tanggal 1 Bulan
+		$sebulan = mktime(0,0,0,date("n"),date("j")+30,date("Y"));
+		$semua   = date("d-m-Y", $sebulan);
+		$begin 	 = new DateTime(date('Y-m-d'));
+		$end 	 = new DateTime($semua);
+
+		$interval = DateInterval::createFromDateString('1 day');
+		$period = new DatePeriod($begin, $interval, $end);
+
+		$dayList = array(
+			'Sun' => 'minggu',
+			'Mon' => 'senin',
+			'Tue' => 'selasa',
+			'Wed' => 'rabu',
+			'Thu' => 'kamis',
+			'Fri' => 'jumat',
+			'Sat' => 'sabtu'
+		);
 		
-        foreach ($data_calendar as $key => $val) 
+        foreach ($period as $val) 
 		{
-			$calendar[] = array(
-                'id' 	=> intval($val->id), 
-				'title' => date_format( date_create($val->tanggal) ,"d"),
-				'start' => date_format( date_create($val->tanggal) ,"Y-m-d"),
-				'color' => '#00e12a',
-			);
+			$hari = $dayList[$val->format("D")];
+			$tanggal = $val->format('Y-m-d');
+			// Cek apakah tanggal tersebut merupakan tanggal tidak rutin ?
+			$tdk_rutin = $this->t_jadwal_tidak_rutin->getByTanggal($id_dokter,$id,$tanggal);
+			// Cek apakah hari pada tanggal tersebut merupakan jadwal rutin ?
+			$rutin = $this->t_jadwal_rutin->getByHari($id_dokter,$id,$hari);
+
+			if($tdk_rutin != null){
+				$calendar[] = array(
+					'id' 	 => intval($tdk_rutin->id),
+					'title' => date_format( date_create($tdk_rutin->tanggal) ,"d"),
+					'rutin' => intval(1),
+					'start' => date_format( date_create($tdk_rutin->tanggal) ,"Y-m-d"),
+					'color' => '#f00',
+				);
+			}elseif($rutin != null){
+				$calendar[] = array(
+					'id' 	=> intval($rutin->id),
+					'title' => $val->format("d"),
+					'rutin' => intval(2),
+					'start' => $val->format('Y-m-d'),
+					'color' => '#00e12a',
+				);
+			}
 		}
 
         $data = array();
@@ -146,13 +183,24 @@ class Pendaftaran extends CI_Controller {
     {
             $res = null;
             $id = $this->input->post('id');
-		
-            $pasien = $this->t_jadwaldokter->getById($id);
+			$rutin = $this->input->post('rutin');
+
+			$mil = $this->input->post('tanggal');
+			$seconds = $mil / 1000;
+			$tanggal = date("Y-m-d", $seconds);;
+
+			if($rutin == 1){
+				$jadwal = $this->t_jadwal_tidak_rutin->getById($id);
+			}else{
+				$jadwal = $this->t_jadwal_rutin->getById($id);
+			}
+
+            $rutin = $this->t_jadwal_rutin->getById($id);
             $layanan = $this->m_layanan->getById($id_layanan);
 
             // Tampilkan Keseluruhan Jam di hari yang dipilih
-            $starttime = $pasien->jam_mulai;
-            $endtime = $pasien->jam_akhir;
+            $starttime = $rutin->jam_mulai;
+            $endtime = $rutin->jam_akhir;
             $duration = $layanan->waktu_layanan;
 
             $array_of_time = array ();
@@ -168,15 +216,14 @@ class Pendaftaran extends CI_Controller {
             }
 			
 			foreach($array_of_time as $value){
-				$cek = $this->t_registrasi->getAllDaftar($value,$pasien->id_klinik,$pasien->tanggal);
+				$cek = $this->t_registrasi->getAllDaftar($value,$jadwal->id_klinik,$tanggal);
 				
 				if($cek != null){
 					$res .= '<a href="" onclick="return false;" class="btn btn-danger" style="margin-left:5px;margin-bottom:5px;width: 125px;background-color: #cfcfcf;border-color: #cfcfcf;">'. $value . ' WIB';
 				}else{
-					$res .= '<a href=' . base_url() . "pendaftaran/konfirmasi/" . $value . "/" . $id_layanan . "/" . $id . ' class="btn btn-success" style="margin-left:5px;margin-bottom:5px;width: 125px;">' . $value . ' WIB';
+					$res .= '<a href=' . base_url() . "pendaftaran/konfirmasi/" . $value . "/" . $id_layanan . "/" . $jadwal->id_klinik . "/" . $jadwal->id_dokter . "/" . $tanggal . ' class="btn btn-success" style="margin-left:5px;margin-bottom:5px;width: 125px;">' . $value . ' WIB';
 				}
 			}
-
 
             header('Content-Type: application/json');
             echo json_encode($res);

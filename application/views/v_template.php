@@ -178,7 +178,10 @@
             url : "<?= base_url()."pendaftaran/pilihjam/" .  $layanan->id_layanan?>",
             method: 'post',
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            data    : 'id='+event.id,
+            data    : {
+              'id' : +event.id,
+              'tanggal' : +event.start,
+              'rutin' : +event.rutin},
             async: false,
             success: function (response) {
                 $('#pilihjam').html(response);
