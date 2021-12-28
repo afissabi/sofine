@@ -38,7 +38,7 @@
             </div>
             <center><h4><?php echo $value->nama_klinik ?></h4>
             <p><?php echo $value->alamat ?><br><?php echo $value->telp ?></p>
-            <a href="<?= base_url()."pendaftaran/layanan/" . $value->id ?>" class="btn btn-primary" style="background: #4c879a;border-color: #4c879a;">Daftar <img src="<?php echo base_url().'assets/img/18.svg';?>" style="width: 25px;" alt=""></a></center>
+            <a href="<?= base_url()."pendaftaran/layanan/" . $value->e_id ?>" class="btn btn-primary" style="background: #4c879a;border-color: #4c879a;">Daftar <img src="<?php echo base_url().'assets/img/18.svg';?>" style="width: 25px;" alt=""></a></center>
           </div>
         </div>
       <?php endforeach; ?>

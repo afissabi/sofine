@@ -18,6 +18,7 @@ class Pendaftaran extends CI_Controller {
 		$this->load->model("t_jadwal_rutin");
 		$this->load->model("t_jadwal_tidak_rutin");
         $this->load->library('PHPCalendar');
+		$this->load->library('secure');
     }
 
     public function pilih_dokter($id_spam)
@@ -40,6 +41,10 @@ class Pendaftaran extends CI_Controller {
     {
         $content = 'daftar/v_home';
         $klinik = $this->m_klinik->getAll();
+		
+		foreach ($klinik as $key => $value) {
+			$value->e_id  = $this->secure->encrypt_url($value->id);
+		}
 
         $data = [
             'content' => $content,
@@ -49,33 +54,41 @@ class Pendaftaran extends CI_Controller {
         $this->load->view('v_template', $data, FALSE);
     }
 
-    public function layanan($id)
+    public function layanan($encrypt_id)
 	{
 		$content = 'daftar/v_layanan';
-        $klinik = $this->m_klinik->getById($id);
+		$id = $this->secure->decrypt_url($encrypt_id);
+		$layanan = $this->m_layanan->getAll();
+
+		foreach ($layanan as $key => $value) {
+			$value->e_id  = $this->secure->encrypt_url($value->id_layanan);
+		}
+
 		$data = [
-			'content' =>  $content,
-            'klinik' =>  $klinik,
-			'layanan' => $this->m_layanan->getAll(),
+			'content' => $content,
+            'klinik'  => $encrypt_id,
+			'layanan' => $layanan,
 		];
 
 		$this->load->view('v_template', $data);
 	}
 
-    public function dokter($id, $id_layanan)
+    public function dokter($encrypt_id, $encrypt_id_layanan)
 	{
 		$content = 'daftar/v_dokter';
-        $klinik = $this->m_klinik->getById($id);
+		$id = $this->secure->decrypt_url($encrypt_id);
+		$id_layanan = $this->secure->decrypt_url($encrypt_id_layanan);
         $layanan = $this->m_layanan->getById($id_layanan);
 		$explode_dokter = explode(',', $layanan->dokter);
-		foreach($explode_dokter as $value){
+
+		foreach($explode_dokter as $key => $value){
 			$valuedokter  = $this->m_pegawai->getById($value);
 		}
 
 		$data = [
 			'content' =>  $content,
-            'klinik'  =>  $klinik,
-            'layanan' =>  $layanan,
+			'klinik'  => $encrypt_id,
+            'layanan' =>  $encrypt_id_layanan,
 			'dokter_list' => $explode_dokter,
 			'dokter'  => $this->m_pegawai->getAll(),
 		];
@@ -83,9 +96,14 @@ class Pendaftaran extends CI_Controller {
 		$this->load->view('v_template', $data);
 	}
 
-    public function konfirmasi($value, $id_layanan, $id_klinik, $id_dokter, $tanggal)
+    public function konfirmasi($encrypt_value, $encrypt_id_layanan, $encrypt_id_klinik, $encrypt_id_dokter, $encrypt_tanggal)
 	{
 		$content = 'daftar/v_konfirmasi';
+		$value = $this->secure->decrypt_url($encrypt_value);
+		$id_layanan = $this->secure->decrypt_url($encrypt_id_layanan);
+		$id_klinik = $this->secure->decrypt_url($encrypt_id_klinik);
+		$id_dokter = $this->secure->decrypt_url($encrypt_id_dokter);
+		$tanggal = $this->secure->decrypt_url($encrypt_tanggal);
         // $jadwal = $this->t_jadwaldokter->getById($id_log);
         $layanan = $this->m_layanan->getById($id_layanan);
         $klinik = $this->m_klinik->getById($id_klinik);
@@ -96,11 +114,24 @@ class Pendaftaran extends CI_Controller {
         $plus = $start_time + $add_mins;
 		$estimasi = date ("H:i", $plus);
 
+		$dayList = array(
+			'Sun' => 'Minggu',
+			'Mon' => 'Senin',
+			'Tue' => 'Selasa',
+			'Wed' => 'Rabu',
+			'Thu' => 'Kamis',
+			'Fri' => 'Jumat',
+			'Sat' => 'Sabtu'
+		);
+
+		$hari = $dayList[date_format(date_create($tanggal), "D")];
+
 		$data = [
 			'content' 	=>  $content,
             'tanggal'  	=>  $tanggal,
             'layanan' 	=>  $layanan,
             'jam'     	=>  $value,
+			'hari'     	=>  $hari,
 			'estimasi'  =>  $estimasi,
             'klinik'  	=>  $klinik,
             'dokter'  	=>  $dokter,
@@ -109,9 +140,12 @@ class Pendaftaran extends CI_Controller {
 		$this->load->view('v_template', $data);
 	}
 
-    public function jadwal($id, $id_layanan, $id_dokter)
+    public function jadwal($encrypt_id, $encrypt_id_layanan, $encrypt_id_dokter)
 	{
 		$content = 'daftar/v_jadwal';
+		$id = $this->secure->decrypt_url($encrypt_id);
+		$id_layanan = $this->secure->decrypt_url($encrypt_id_layanan);
+		$id_dokter = $this->secure->decrypt_url($encrypt_id_dokter);
         $klinik = $this->m_klinik->getById($id);
         $layanan = $this->m_layanan->getById($id_layanan);
         $dokter = $this->m_pegawai->getById($id_dokter);
@@ -152,7 +186,7 @@ class Pendaftaran extends CI_Controller {
 					'title' => date_format( date_create($tdk_rutin->tanggal) ,"d"),
 					'rutin' => intval(1),
 					'start' => date_format( date_create($tdk_rutin->tanggal) ,"Y-m-d"),
-					'color' => '#f00',
+					'color' => '#00e12a',
 				);
 			}elseif($rutin != null){
 				$calendar[] = array(
@@ -218,10 +252,11 @@ class Pendaftaran extends CI_Controller {
 			foreach($array_of_time as $value){
 				$cek = $this->t_registrasi->getAllDaftar($value,$jadwal->id_klinik,$tanggal);
 				
+
 				if($cek != null){
 					$res .= '<a href="" onclick="return false;" class="btn btn-danger" style="margin-left:5px;margin-bottom:5px;width: 125px;background-color: #cfcfcf;border-color: #cfcfcf;">'. $value . ' WIB';
 				}else{
-					$res .= '<a href=' . base_url() . "pendaftaran/konfirmasi/" . $value . "/" . $id_layanan . "/" . $jadwal->id_klinik . "/" . $jadwal->id_dokter . "/" . $tanggal . ' class="btn btn-success" style="margin-left:5px;margin-bottom:5px;width: 125px;">' . $value . ' WIB';
+					$res .= '<a href=' . base_url() . "pendaftaran/konfirmasi/" . $this->secure->encrypt_url($value) . "/" . $this->secure->encrypt_url($id_layanan) . "/" . $this->secure->encrypt_url($jadwal->id_klinik) . "/" . $this->secure->encrypt_url($jadwal->id_dokter) . "/" . $this->secure->encrypt_url($tanggal) . ' class="btn btn-success" style="margin-left:5px;margin-bottom:5px;width: 125px;">' . $value . ' WIB';
 				}
 			}
 

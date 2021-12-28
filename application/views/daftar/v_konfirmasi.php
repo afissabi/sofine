@@ -46,7 +46,7 @@
                     </div>
                     <center>
                         <h5 style="color: #314d97;"><b>JADWAL</b></h5>
-                        <p>Tanggal : <?php echo $tanggal ?> <br> Pukul : <?php echo $jam ?> WIB</p>
+                        <p><?php echo $hari ?>, <?php echo date_format(date_create($tanggal), "d-m-Y") ?> <br> Pukul : <?php echo $jam ?> WIB</p>
                     </center>
                 </div>
             </div>
@@ -198,71 +198,71 @@
                             </div>
                         </div>
                         <div id="medis" style="display:none">
-                        <hr>
-                        <p>*Mohon perbarui data medis anda...</p>
-                        <hr>
-                        <div class="row form-group">
-                            <div class="col-md-6 mb-3">
-                                <label class="text-black" for="fname">Apakah Anda Sedang Hamil</label>
-                                <select name="hamil" id="hamil" class="form-control">
-                                    <option value="0">TIDAK</option>
-                                    <option value="1">YA</option>
-                                </select>
+                            <hr>
+                            <p>*Mohon perbarui data medis anda...</p>
+                            <hr>
+                            <div class="row form-group">
+                                <div class="col-md-6 mb-3">
+                                    <label class="text-black" for="fname">Apakah Anda Sedang Hamil</label>
+                                    <select name="hamil" id="hamil" class="form-control">
+                                        <option value="0">TIDAK</option>
+                                        <option value="1">YA</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-1 col-form-label">Penyakit Jantung:</label>
-                            <div class="col-lg-3">
-                            <select class="form-control required" name="penyakit_jantung" id="penyakit_jantung">
-                                <option value="0"> Tidak Ada </option>
-                                <option value="1"> Ada </option>
-                            </select>
-                            <span class="help-block"></span>
+                            <div class="form-group row">
+                                <label class="col-lg-1 col-form-label">Penyakit Jantung:</label>
+                                <div class="col-lg-3">
+                                    <select class="form-control required" name="penyakit_jantung" id="penyakit_jantung">
+                                        <option value="0"> Tidak Ada </option>
+                                        <option value="1"> Ada </option>
+                                    </select>
+                                    <span class="help-block"></span>
+                                </div>
+                                <label class="col-lg-1 col-form-label">Diabetes:</label>
+                                <div class="col-lg-3">
+                                    <select class="form-control required" name="diabetes" id="diabetes">
+                                        <option value="0"> Tidak Ada </option>
+                                        <option value="1">> Ada </option>
+                                    </select>
+                                    <span class="help-block"></span>
+                                </div>
+                                <label class="col-lg-1 col-form-label">Haemopilia:</label>
+                                <div class="col-lg-3">
+                                    <select class="form-control required" name="haemopilia" id="haemopilia">
+                                        <option value="0"> Tidak Ada </option>
+                                        <option value="1"> Ada </option>
+                                    </select>
+                                    <span class="help-block"></span>
+                                </div>
                             </div>
-                            <label class="col-lg-1 col-form-label">Diabetes:</label>
-                            <div class="col-lg-3">
-                            <select class="form-control required" name="diabetes" id="diabetes">
-                                <option value="0"> Tidak Ada </option>
-                                <option value="1">> Ada </option>
-                            </select>
-                            <span class="help-block"></span>
+                            <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg kt-separator--portlet-fit"></div>
+                            <div class="form-group row">
+                                <label class="col-lg-1 col-form-label">Hepatitis:</label>
+                                <div class="col-lg-3">
+                                    <select class="form-control required" name="hepatitis" id="hepatitis">
+                                        <option value="0"> Tidak Ada </option>
+                                        <option value="1"> Ada </option>
+                                    </select>
+                                    <span class="help-block"></span>
+                                </div>
+                                <label class="col-lg-1 col-form-label">Gastring:</label>
+                                <div class="col-lg-3">
+                                    <select class="form-control required" name="gastring" id="gastring">
+                                        <option value="0"> Tidak Ada </option>
+                                        <option value="1"> Ada </option>
+                                    </select>
+                                    <span class="help-block"></span>
+                                </div>
+                                <label class="col-lg-1 col-form-label">Penyakit Lainnya:</label>
+                                <div class="col-lg-3">
+                                    <select class="form-control required" name="penyakit_lainnya" id="penyakit_lainnya">
+                                        <option value="0"> Tidak Ada </option>
+                                        <option value="1"> Ada </option>
+                                    </select>
+                                    <span class="help-block"></span>
+                                </div>
                             </div>
-                            <label class="col-lg-1 col-form-label">Haemopilia:</label>
-                            <div class="col-lg-3">
-                            <select class="form-control required" name="haemopilia" id="haemopilia">
-                                <option value="0"> Tidak Ada </option>
-                                <option value="1"> Ada </option>
-                            </select>
-                            <span class="help-block"></span>
-                            </div>
-                        </div>
-                        <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg kt-separator--portlet-fit"></div>
-                        <div class="form-group row">
-                            <label class="col-lg-1 col-form-label">Hepatitis:</label>
-                            <div class="col-lg-3">
-                            <select class="form-control required" name="hepatitis" id="hepatitis">
-                                <option value="0"> Tidak Ada </option>
-                                <option value="1"> Ada </option>
-                            </select>
-                            <span class="help-block"></span>
-                            </div>
-                            <label class="col-lg-1 col-form-label">Gastring:</label>
-                            <div class="col-lg-3">
-                            <select class="form-control required" name="gastring" id="gastring">
-                                <option value="0"> Tidak Ada </option>
-                                <option value="1"> Ada </option>
-                            </select>
-                            <span class="help-block"></span>
-                            </div>
-                            <label class="col-lg-1 col-form-label">Penyakit Lainnya:</label>
-                            <div class="col-lg-3">
-                            <select class="form-control required" name="penyakit_lainnya" id="penyakit_lainnya">
-                                <option value="0"> Tidak Ada </option>
-                                <option value="1"> Ada </option>
-                            </select>
-                            <span class="help-block"></span>
-                            </div>
-                        </div>
                         </div>
                     </div>
                     <br>

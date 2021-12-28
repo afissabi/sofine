@@ -16,7 +16,7 @@
             </div>
             <center>
               <h5 style="min-height:36px;font-size: 15px;"><?php echo $value->nama_layanan ?></h5>
-              <a href="<?= base_url() . "pendaftaran/dokter/" . $klinik->id . "/" . $value->id_layanan ?>" class="btn btn-primary" style="background: #4c879a;border-color: #4c879a;">Pilih Layanan <img src="<?php echo base_url() . 'assets/img/12.svg'; ?>" style="width: 25px;" alt=""></a>
+              <a href="<?= base_url() . "pendaftaran/dokter/" . $klinik . "/" . $value->e_id ?>" class="btn btn-primary" style="background: #4c879a;border-color: #4c879a;">Pilih Layanan <img src="<?php echo base_url() . 'assets/img/12.svg'; ?>" style="width: 25px;" alt=""></a>
             </center>
           </div>
         </div>
