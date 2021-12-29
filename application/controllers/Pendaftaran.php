@@ -177,8 +177,13 @@ class Pendaftaran extends CI_Controller {
 			$tanggal = $val->format('Y-m-d');
 			// Cek apakah tanggal tersebut merupakan tanggal tidak rutin ?
 			$tdk_rutin = $this->t_jadwal_tidak_rutin->getByTanggal($id_dokter,$id,$tanggal);
+
+			$prei = $this->t_jadwal_tidak_rutin->getByLibur($id_dokter, $id, $tanggal);
+			
 			// Cek apakah hari pada tanggal tersebut merupakan jadwal rutin ?
 			$rutin = $this->t_jadwal_rutin->getByHari($id_dokter,$id,$hari);
+			
+			// $podo = $prei == $rutin->hari;
 
 			if($tdk_rutin != null){
 				$calendar[] = array(
@@ -188,7 +193,12 @@ class Pendaftaran extends CI_Controller {
 					'start' => date_format( date_create($tdk_rutin->tanggal) ,"Y-m-d"),
 					'color' => '#00e12a',
 				);
-			}elseif($rutin != null){
+			}elseif($rutin != null && $prei != null){
+				$dinoprei = $dayList[date_format(date_create($prei->tanggal), "D")];
+				if($dinoprei == $rutin->hari){
+					
+				}
+			} elseif ($rutin != null) {	
 				$calendar[] = array(
 					'id' 	=> intval($rutin->id),
 					'title' => $val->format("d"),
