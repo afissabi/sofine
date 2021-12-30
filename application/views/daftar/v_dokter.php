@@ -14,7 +14,7 @@
           if ($dokter != null) {
             $e_id  = $this->secure->encrypt_url($dokter->id);
             $user  = $this->m_user->getUserId($dokter->id);
-            ?>
+        ?>
           <div class="col-xl-3 col-md-6 v_cari" data-filter-name="<?php echo strtolower($dokter->nama) ?>">
             <div class="icon-box">
               <div class="icon">
@@ -26,8 +26,8 @@
               </center>
             </div>
           </div>
-        <?php } ?>
-      <?php endforeach; ?>
+        <?php } else { ?>
+      <?php } endforeach; ?>
     </div>
 
   </div>

@@ -31,7 +31,7 @@ class M_pegawai extends CI_Model
     
     public function getById($id)
     {
-        return $this->db->get_where($this->_pegawai, ["id" => $id, "deleted_at" => null])->row();
+        return $this->db->get_where($this->_pegawai, ["id" => $id, "is_aktif" => 1])->row();
     }
 
     public function save()
