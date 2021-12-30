@@ -31,7 +31,7 @@
             <div class="col-xl-3 col-md-6 v_cari" style="margin-bottom: 10px;">
                 <div class="icon-box">
                     <div class="icon">
-                        <img src="<?php echo base_url() . 'assets/img/dokter.svg'; ?>" style="width: 100%;background: #fff;" alt="">
+                        <img src="<?php echo base_url() . "admin/files/img/user_img/" . $user->foto ?>" style="width: 100%;background: #fff;" alt="">
                     </div>
                     <center>
                         <h5 style="color: #314d97;"><b>DOKTER</b></h5>

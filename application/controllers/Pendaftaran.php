@@ -10,6 +10,7 @@ class Pendaftaran extends CI_Controller {
         $this->load->model("m_layanan");
         $this->load->model("m_klinik");
         $this->load->model("m_pegawai");
+		$this->load->model("m_user");
 		$this->load->model("m_data_medik");
         $this->load->model("m_pasien");
         $this->load->model("t_registrasi");
@@ -108,6 +109,7 @@ class Pendaftaran extends CI_Controller {
         $layanan = $this->m_layanan->getById($id_layanan);
         $klinik = $this->m_klinik->getById($id_klinik);
         $dokter = $this->m_pegawai->getById($id_dokter);
+		$user  = $this->m_user->getById($id_dokter);
 
 		$start_time    = strtotime ($value);
 		$add_mins  = $layanan->waktu_layanan * 60;
@@ -132,6 +134,7 @@ class Pendaftaran extends CI_Controller {
             'layanan' 	=>  $layanan,
             'jam'     	=>  $value,
 			'hari'     	=>  $hari,
+			'user'     	=>  $user,
 			'estimasi'  =>  $estimasi,
             'klinik'  	=>  $klinik,
             'dokter'  	=>  $dokter,

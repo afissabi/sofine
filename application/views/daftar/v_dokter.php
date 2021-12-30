@@ -10,11 +10,12 @@
     <div class="row">
       <?php foreach ($dokter_list as $value) : ?>
         <?php $dokter  = $this->m_pegawai->getById($value);
-          $e_id  = $this->secure->encrypt_url($dokter->id); ?>
+          $e_id  = $this->secure->encrypt_url($dokter->id);
+          $user  = $this->m_user->getById($dokter->id); ?>
         <div class="col-xl-3 col-md-6 v_cari" data-filter-name="<?php echo strtolower($dokter->nama) ?>">
           <div class="icon-box">
             <div class="icon">
-              <img src="<?php echo base_url() . 'assets/img/dokter.svg'; ?>" style="width: 100%;background: #fff;" alt="">
+              <img src="<?php echo base_url() . "admin/files/img/user_img/" . $user->foto ?>" style="width: 100%;background: #fff;" alt="">
             </div>
             <center>
               <h4 style="min-height: 10px;"><?php echo $dokter->nama ?></h4>
