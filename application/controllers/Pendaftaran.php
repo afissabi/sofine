@@ -81,10 +81,10 @@ class Pendaftaran extends CI_Controller {
 		$id_layanan = $this->secure->decrypt_url($encrypt_id_layanan);
         $layanan = $this->m_layanan->getById($id_layanan);
 		$explode_dokter = explode(',', $layanan->dokter);
-
-		foreach($explode_dokter as $key => $value){
-			$valuedokter  = $this->m_pegawai->getById($value);
-		}
+		
+		// foreach($explode_dokter as $key => $value){
+		// 	// $valuedokter  = $this->m_pegawai->getById($value);
+		// }
 
 		$data = [
 			'content' =>  $content,

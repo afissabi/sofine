@@ -26,12 +26,12 @@ class M_pegawai extends CI_Model
 
     public function getAll()
     {
-        return $this->db->get_where($this->_pegawai, ["id_jabatan" => 1])->result();
+        return $this->db->get_where($this->_pegawai, ["id_jabatan" => 1, "is_aktif" => 1])->result();
     }
     
     public function getById($id)
     {
-        return $this->db->get_where($this->_pegawai, ["id" => $id])->row();
+        return $this->db->get_where($this->_pegawai, ["id" => $id, "deleted_at" => null])->row();
     }
 
     public function save()
