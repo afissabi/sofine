@@ -371,7 +371,11 @@ class Pendaftaran extends CI_Controller {
 			];	
 
 			$pasien['id'] = $id_pasien;
-			$pasien['no_rm'] = $this->m_pasien->get_kode_rm(substr($nama,0,2));
+			$pasien['no_rm'] = $this->m_pasien->get_kode_rm(
+					substr($nama, 0, 2),
+					date_format(date_create($tanggal_lahir), "Y"),
+					date_format(date_create($tanggal_lahir), "m")
+				);
 			$pasien['created_at'] = $timestamp;
 
 			$insert = $this->m_pasien->save($pasien);

@@ -17,6 +17,6 @@ class T_jadwal_rutin extends CI_Model
 
     public function getByHari($id_dokter,$id_klinik,$hari)
     {
-        return $this->db->get_where($this->_table, ["id_dokter" => $id_dokter, "id_klinik" => $id_klinik, "hari" => $hari])->row();
+        return $this->db->get_where($this->_table, ["id_dokter" => $id_dokter, "id_klinik" => $id_klinik, "hari" => $hari, "deleted_at" => null])->row();
     }
 }
