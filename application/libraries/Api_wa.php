@@ -8,9 +8,8 @@ class Api_wa extends CI_Controller {
 
     public function send($nomor, $message, $id_klinik)
     {
-        $curl = curl_init();
-
-		if($id_klinik = 3){
+		if($id_klinik == '3'){
+			$curl = curl_init();
 			curl_setopt_array($curl, array(
 				CURLOPT_URL => "https://hp.fonnte.com/api/send_message.php",
 				CURLOPT_RETURNTRANSFER => true,
@@ -30,7 +29,8 @@ class Api_wa extends CI_Controller {
 					"Authorization: kfhQFDo7oj7je2SUwrYj"
 				),
 				));
-		}elseif($id_klinik = 4){
+		}elseif($id_klinik == '4'){
+			$curl = curl_init();
 			curl_setopt_array($curl, array(
 				CURLOPT_URL => "https://hp.fonnte.com/api/send_message.php",
 				CURLOPT_RETURNTRANSFER => true,

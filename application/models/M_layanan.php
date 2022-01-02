@@ -26,7 +26,7 @@ class M_layanan extends CI_Model
 
     public function getAll()
     {
-        return $this->db->get($this->_layanan)->result();
+        return $this->db->get_where($this->_layanan, ["deleted_at" => null])->result();
     }
     
     public function getById($id)
