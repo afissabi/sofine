@@ -26,7 +26,16 @@ class T_registrasi extends CI_Model
 
     public function getAllDaftar($jam, $id_klinik, $tanggal)
     {
-        return $this->db->get_where($this->_table, ["jam_reg" => $jam, "id_klinik" => $id_klinik,  "tanggal_reg" => $tanggal ])->row();
+        $this->db->select('jam_reg,estimasi_selesai,id_klinik,tanggal_reg');
+        $this->db->from('t_registrasi');
+        $this->db->where('id_klinik', $id_klinik);
+        $this->db->where('tanggal_reg', $tanggal);
+        $this->db->where('jam_reg <=', $jam);
+        $this->db->where('estimasi_selesai >', $jam);
+        $query = $this->db->get();
+        return $query->row();
+        // print_r($this->db->last_query());
+        // return $this->db->get_where($this->_table, ["jam_reg" => $jam, "estimasi_selesai" => $jam, "id_klinik" => $id_klinik, "tanggal_reg" => $tanggal ])->row();
     }
     
 	public function cekJam($jam, $id_klinik,  $tanggal)
@@ -169,7 +178,7 @@ class T_registrasi extends CI_Model
 
     public function get_regist($id_reg)
     {
-        $this->db->select('r.*, p.*, k.nama_klinik, k.alamat as alamat_klinik');
+        $this->db->select('r.*, p.*, k.nama_klinik, r.id_klinik, k.alamat as alamat_klinik');
         $this->db->from('t_registrasi r');
         $this->db->join('m_pasien p', 'p.id=r.id_pasien');
         $this->db->join('m_klinik k', 'k.id=r.id_klinik');

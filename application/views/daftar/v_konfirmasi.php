@@ -46,7 +46,7 @@
                     </div>
                     <center>
                         <h5 style="color: #314d97;"><b>JADWAL</b></h5>
-                        <p><?php echo $hari ?>, <?php echo date_format(date_create($tanggal), "d-m-Y") ?> <br> Pukul : <?php echo $jam ?> WIB</p>
+                        <p><?php echo $hari ?>, <?php echo $tanggalindo ?> <br> Pukul : <?php echo $jam ?> WIB</p>
                     </center>
                 </div>
             </div>
@@ -113,10 +113,17 @@
                                 <div class="col-md-12 mb-3 mb-md-4">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <textarea name="alamat_rumah" id="alamat_rumah" placeholder="Alamat Rumah" class="form-control" rows="3"></textarea>
+                                            <textarea name="alamat_rumah" id="alamat_rumah" placeholder="Alamat KTP" class="form-control" rows="3"></textarea>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" name="hp" id="hp" value="" placeholder="No. Hp" class="form-control">
+                                            <textarea name="alamat_kantor" id="alamat_kantor" placeholder="Alamat Domisili" class="form-control" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-3 mb-md-4">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="text" name="hp" id="hp" value="" placeholder="No. Hp (WA)" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -178,10 +185,17 @@
                                 <div class="col-md-12 mb-3 mb-md-4">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <textarea name="alamat_rumah2" placeholder="Alamat Rumah" class="form-control" rows="3"></textarea>
+                                            <textarea name="alamat_rumah2" placeholder="Alamat KTP" class="form-control" rows="3"></textarea>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" name="hp2" value="" placeholder="No. Hp" class="form-control">
+                                            <textarea name="alamat_kantor2" placeholder="Alamat Domisili" class="form-control" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-3 mb-md-4">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="text" name="hp2" value="" placeholder="No. Hp (WA)" class="form-control">
                                         </div>
                                     </div>
                                 </div>

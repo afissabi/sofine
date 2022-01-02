@@ -126,6 +126,28 @@ class Pendaftaran extends CI_Controller {
 			'Sat' => 'Sabtu'
 		);
 
+		$bulan = array (
+			1 =>   'Januari',
+			'Februari',
+			'Maret',
+			'April',
+			'Mei',
+			'Juni',
+			'Juli',
+			'Agustus',
+			'September',
+			'Oktober',
+			'November',
+			'Desember'
+		);
+		$pecahkan = explode('-', $tanggal);
+		
+		// variabel pecahkan 0 = tanggal
+		// variabel pecahkan 1 = bulan
+		// variabel pecahkan 2 = tahun
+	 
+		$tanggalindo = $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+
 		$hari = $dayList[date_format(date_create($tanggal), "D")];
 
 		$data = [
@@ -134,6 +156,7 @@ class Pendaftaran extends CI_Controller {
             'layanan' 	=>  $layanan,
             'jam'     	=>  $value,
 			'hari'     	=>  $hari,
+			'tanggalindo' =>  $tanggalindo,
 			'user'     	=>  $user,
 			'estimasi'  =>  $estimasi,
             'klinik'  	=>  $klinik,
@@ -254,7 +277,7 @@ class Pendaftaran extends CI_Controller {
             $start_time    = strtotime ($starttime);
             $end_time      = strtotime ($endtime);
 
-            $add_mins  = $duration * 60;
+            $add_mins  = 30 * 60;
 
             while ($start_time <= $end_time)
             {
@@ -265,7 +288,6 @@ class Pendaftaran extends CI_Controller {
 			foreach($array_of_time as $value){
 				$cek = $this->t_registrasi->getAllDaftar($value,$jadwal->id_klinik,$tanggal);
 				
-
 				if($cek != null){
 					$res .= '<a href="" onclick="return false;" class="btn btn-danger" style="margin-left:5px;margin-bottom:5px;width: 125px;background-color: #cfcfcf;border-color: #cfcfcf;">'. $value . ' WIB';
 				}else{
@@ -417,12 +439,34 @@ class Pendaftaran extends CI_Controller {
 		}else{
 			$this->db->trans_commit();
 			try {
-				// $regist = $this->t_registrasi->get_regist($id);
-				// $this->load->library('Api_wa');
-				// $wa = new Api_wa;
-				// $nomor = $regist->hp;
-				// $message = 'Hallo Bapak/ibu *'.$regist->nama.'* Berikut adalah detail registrasi anda  *'.$regist->nama_klinik.'* yang beralamat pada '.$regist->alamat_klinik.' Pada tanggal '.$regist->tanggal_reg.' Pukul '.$regist->jam_reg.' Harap datang tepat waktu. Terimakasih atas kepercayaan anda :)';
-				// $hasil = $wa->send($nomor, $message);
+				$regist = $this->t_registrasi->get_regist($id);
+				$bulan = array (
+					1 =>   'Januari',
+					'Februari',
+					'Maret',
+					'April',
+					'Mei',
+					'Juni',
+					'Juli',
+					'Agustus',
+					'September',
+					'Oktober',
+					'November',
+					'Desember'
+				);
+				$pecahkan = explode('-', $regist->tanggal_reg);
+				
+				// variabel pecahkan 0 = tanggal
+				// variabel pecahkan 1 = bulan
+				// variabel pecahkan 2 = tahun
+			 
+				$tanggalindo = $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+				$this->load->library('Api_wa');
+				$wa = new Api_wa;
+				$nomor = $regist->hp;
+				$id_klinik = $regist->id_klinik;
+				$message = 'Hallo Kakak *'.$regist->nama.'* Berikut adalah detail registrasi anda  *'.$regist->nama_klinik.'* yang beralamat pada '.$regist->alamat_klinik.' Pada tanggal '.$tanggalindo.' Pukul '.$regist->jam_reg.' Harap datang tepat waktu. Terimakasih atas kepercayaan anda :)';
+				$hasil = $wa->send($nomor, $message, $id_klinik);
 				
 			} catch (Exception $e) {
 			// exception is raised and it'll be handled here
