@@ -124,6 +124,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <input type="text" name="hp" id="hp" value="" placeholder="No. Hp (WA)" class="form-control">
+                                            <input type="hidden" name="umur" id="umur" value="" placeholder="UMUR" class="form-control">
+                                            <input type="hidden" name="pemetaan" id="pemetaan" value="" placeholder="PEMETAAN" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -260,7 +262,7 @@
                                     </select>
                                     <span class="help-block"></span>
                                 </div>
-                                <label class="col-lg-1 col-form-label">Gastring:</label>
+                                <label class="col-lg-1 col-form-label">Maag :</label>
                                 <div class="col-lg-3">
                                     <select class="form-control required" name="gastring" id="gastring">
                                         <option value="0"> Tidak Ada </option>

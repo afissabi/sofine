@@ -251,6 +251,8 @@
             $("#telp").val(response.telp_rumah);
             $("#alamat_kantor").val(response.alamat_kantor);
             $("#hp").val(response.hp);
+            $("#umur").val(response.umur);
+            $("#pemetaan").val(response.pemetaan);
           }else{ // Jika isi dari array status adalah failed
             alert("Data Tidak Ditemukan");
           }

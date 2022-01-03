@@ -299,12 +299,38 @@ class Pendaftaran extends CI_Controller {
             echo json_encode($res);
     }
 
+	private function umur_dan_pemetaan($tanggal_lahir = null, $flag_cari = 'umur')
+	{
+		$tgl_lhr = new DateTime($tanggal_lahir);
+		$skrg  = new DateTime('today');
+		$umur = $tgl_lhr->diff($skrg)->y;
+		
+		if($tanggal_lahir !== null) {
+			if($flag_cari == 'umur') {
+				$retval = $umur;
+			}else{
+				$data = $this->m_global->single_row('*', ['umur_awal <=' => $umur, 'umur_akhir >=' => $umur], 'm_pemetaan');
+				if($data) {
+					$retval = $data->id;
+				}else{
+					$retval = null;
+				}
+			}
+		}else{
+			$retval = null;
+		}
+		
+
+		return $retval;
+	}
+
     public function search(){
 		// Ambil data NIK yang dikirim via ajax post
 		$nik = $this->input->post('nik');
 		
 		$pasien = $this->m_pasien->viewByNik($nik);
-		
+		$umur = $this->umur_dan_pemetaan($pasien->tanggal_lahir, 'umur');
+		$pemetaan = $this->umur_dan_pemetaan($pasien->tanggal_lahir, 'pemetaan');
 		if( ! empty($pasien)){ // Jika data pasien ada/ditemukan
 		  // Buat sebuah array
 		  $callback = array(
@@ -321,6 +347,8 @@ class Pendaftaran extends CI_Controller {
 			'telp' => $pasien->telp_rumah,
 			'alamat_kantor' => $pasien->alamat_kantor,
 			'hp' => $pasien->hp,
+			'umur' => $umur,
+			'pemetaan' => $pemetaan,
 		  );
 		}else{
 		  $callback = array('status' => 'failed'); // set array status dengan failed
@@ -376,6 +404,8 @@ class Pendaftaran extends CI_Controller {
 			$telp_rumah = $this->input->post('telp2');
 			$alamat_kantor = $this->input->post('alamat_kantor2');
 			$hp = $this->input->post('hp2');
+			$umur = $this->umur_dan_pemetaan($tanggal_lahir, 'umur');
+			$pemetaan = $this->umur_dan_pemetaan($tanggal_lahir, 'pemetaan');
 
 			$pasien = [
 				'nama' => $nama,
@@ -413,6 +443,8 @@ class Pendaftaran extends CI_Controller {
 
 			$where = ['id' => $cek_medik->id];
 			$update = $this->m_data_medik->update($where, $medik);
+			$umur = $this->input->post('umur');
+			$pemetaan = $this->input->post('pemetaan');
 		}
 
 		$registrasi = [
@@ -423,6 +455,8 @@ class Pendaftaran extends CI_Controller {
 			'jam_reg' => $jam_reg,
 			'estimasi_selesai' => $estimasi,
 			'id_pegawai' => $id_pegawai,
+			'umur' => $umur,
+			'id_pemetaan' => $pemetaan,
 		];
 
 			$id = $this->t_registrasi->get_max_id();
@@ -461,15 +495,15 @@ class Pendaftaran extends CI_Controller {
 				// variabel pecahkan 2 = tahun
 			 
 				$tanggalindo = $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
-				$this->load->library('Api_wa');
-				$wa = new Api_wa;
+				// $this->load->library('Api_wa');
+				// $wa = new Api_wa;
 
-				$nomor = $regist->hp;
-				$idKlinik = $regist->id_klinik;
-				$pukul = date_format(date_create($regist->jam_reg), "H:i");
+				// $nomor = $regist->hp;
+				// $idKlinik = $regist->id_klinik;
+				// $pukul = date_format(date_create($regist->jam_reg), "H:i");
 				
-				$message = 'Hallo Kakak *'.$regist->nama.'* Berikut adalah detail registrasi anda di *'.$regist->nama_klinik.'* yang beralamat pada '.$regist->alamat_klinik.' Pada tanggal '.$tanggalindo.', Pukul '.$pukul.' WIB. Harap datang tepat waktu. Terimakasih atas kepercayaan anda :)';
-				$hasil = $wa->send($nomor, $message, $idKlinik);
+				// $message = 'Hallo Kakak *'.$regist->nama.'* Berikut adalah detail registrasi anda di *'.$regist->nama_klinik.'* yang beralamat pada '.$regist->alamat_klinik.' Pada tanggal '.$tanggalindo.', Pukul '.$pukul.' WIB. Harap datang tepat waktu. Terimakasih atas kepercayaan anda :)';
+				// $hasil = $wa->send($nomor, $message, $idKlinik);
 				
 			} catch (Exception $e) {
 			// exception is raised and it'll be handled here
