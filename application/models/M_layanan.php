@@ -26,12 +26,13 @@ class M_layanan extends CI_Model
 
     public function getAll()
     {
+        $this->db->order_by("urutan", "asc");
         return $this->db->get_where($this->_layanan, ["deleted_at" => null])->result();
     }
     
     public function getById($id)
     {
-        return $this->db->get_where($this->_layanan, ["id_layanan" => $id])->row();
+        return $this->db->get_where($this->_layanan, ["id_layanan" => $id, "deleted_at" => null])->row();
     }
 
 }

@@ -21,7 +21,7 @@ class T_registrasi extends CI_Model
     public function getAllReg($id_klinik,  $tanggal)
     {
         $this->db->group_by("jam_reg");
-        return $this->db->get_where($this->_table, ["id_klinik" => $id_klinik,  "tanggal_reg" => $tanggal ])->result();
+        return $this->db->get_where($this->_table, ["id_klinik" => $id_klinik,  "tanggal_reg" => $tanggal, "deleted_at" => null ])->result();
     }
 
     public function getAllDaftar($jam, $id_klinik, $tanggal)

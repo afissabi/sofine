@@ -179,7 +179,7 @@ class Pendaftaran extends CI_Controller {
 		$calendar = array();
 
 		// Menentukan Tanggal 1 Bulan
-		$sebulan = mktime(0,0,0,date("n"),date("j")+30,date("Y"));
+		$sebulan = mktime(0,0,0,date("n"),date("j")+14,date("Y"));
 		$semua   = date("d-m-Y", $sebulan);
 		$begin 	 = new DateTime(date('Y-m-d'));
 		$end 	 = new DateTime($semua);
