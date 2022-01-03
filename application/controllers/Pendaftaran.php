@@ -495,15 +495,15 @@ class Pendaftaran extends CI_Controller {
 				// variabel pecahkan 2 = tahun
 			 
 				$tanggalindo = $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
-				// $this->load->library('Api_wa');
-				// $wa = new Api_wa;
+				$this->load->library('Api_wa');
+				$wa = new Api_wa;
 
-				// $nomor = $regist->hp;
-				// $idKlinik = $regist->id_klinik;
-				// $pukul = date_format(date_create($regist->jam_reg), "H:i");
+				$nomor = $regist->hp;
+				$idKlinik = $regist->id_klinik;
+				$pukul = date_format(date_create($regist->jam_reg), "H:i");
 				
-				// $message = 'Hallo Kakak *'.$regist->nama.'* Berikut adalah detail registrasi anda di *'.$regist->nama_klinik.'* yang beralamat pada '.$regist->alamat_klinik.' Pada tanggal '.$tanggalindo.', Pukul '.$pukul.' WIB. Harap datang tepat waktu. Terimakasih atas kepercayaan anda :)';
-				// $hasil = $wa->send($nomor, $message, $idKlinik);
+				$message = 'Hallo Kakak *'.$regist->nama.'* Berikut adalah detail registrasi anda di *'.$regist->nama_klinik.'* yang beralamat pada '.$regist->alamat_klinik.' Pada tanggal '.$tanggalindo.', Pukul '.$pukul.' WIB. Harap datang tepat waktu. Terimakasih atas kepercayaan anda :)';
+				$hasil = $wa->send($nomor, $message, $idKlinik);
 				
 			} catch (Exception $e) {
 			// exception is raised and it'll be handled here
