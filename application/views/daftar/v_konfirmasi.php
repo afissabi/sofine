@@ -297,7 +297,7 @@
                                 <label class="col-lg-1 col-form-label">Jenis Pembayaran:</label>
                                 <div class="col-lg-3">
                                     <select class="form-control required" name="jenis_bayar" required>
-                                        <option> Umum </option>
+                                        <option value=""> Umum </option>
                                         <option value="1"> Asuransi </option>
                                     </select>
                                 </div>
