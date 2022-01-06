@@ -275,7 +275,8 @@ class Pendaftaran extends CI_Controller {
 
             $array_of_time = array ();
             $start_time    = strtotime ($starttime);
-            $end_time      = strtotime ($endtime);
+			$nyartime	   = date("H:i", strtotime('-30 minutes', strtotime($endtime)));
+            $end_time      = strtotime($nyartime);
 
             $add_mins  = 30 * 60;
 
@@ -381,6 +382,10 @@ class Pendaftaran extends CI_Controller {
 		$gastring = $this->input->post('gastring');
 		$hamil = $this->input->post('hamil');
 		$penyakit_lainnya = $this->input->post('penyakit_lainnya');
+		$ket_penyakit = $this->input->post('ket_penyakit');
+		$jenis_bayar = $this->input->post('jenis_bayar');
+		$alergi_obat = $this->input->post('alergi_obat');
+		$alergi_obat_val = $this->input->post('alergi_obat_val');
 
 		$medik = [
 			'penyakit_jantung' => $penyakit_jantung,
@@ -390,6 +395,9 @@ class Pendaftaran extends CI_Controller {
 			'gastring' => $gastring,
 			'hamil' => $hamil,
 			'penyakit_lainnya' => $penyakit_lainnya,
+			'ket_penyakit_lain' => $ket_penyakit,
+			'alergi_obat' => $alergi_obat,
+			'alergi_obat_val' => $alergi_obat_val,
 		];
 
 		if($kpx == 2){
@@ -457,6 +465,7 @@ class Pendaftaran extends CI_Controller {
 			'id_pegawai' => $id_pegawai,
 			'umur' => $umur,
 			'id_pemetaan' => $pemetaan,
+			'is_asuransi' => $jenis_bayar,
 		];
 
 			$id = $this->t_registrasi->get_max_id();
@@ -495,19 +504,19 @@ class Pendaftaran extends CI_Controller {
 				// variabel pecahkan 2 = tahun
 			 
 				$tanggalindo = $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
-				$this->load->library('Api_wa');
-				$wa = new Api_wa;
+				// $this->load->library('Api_wa');
+				// $wa = new Api_wa;
 
-				$nomor = $regist->hp;
-				$idKlinik = $regist->id_klinik;
-				$pukul = date_format(date_create($regist->jam_reg), "H:i");
+				// $nomor = $regist->hp;
+				// $idKlinik = $regist->id_klinik;
+				// $pukul = date_format(date_create($regist->jam_reg), "H:i");
 				
-				$message = 'Hallo Kakak *'.$regist->nama.'* Berikut adalah detail registrasi anda di *'.$regist->nama_klinik.'* yang beralamat pada '.$regist->alamat_klinik.' Pada tanggal '.$tanggalindo.', Pukul '.$pukul.' WIB. Harap datang tepat waktu. Terimakasih atas kepercayaan anda :)';
-				$hasil = $wa->send($nomor, $message, $idKlinik);
+				// $message = 'Hallo Kakak *'.$regist->nama.'* Berikut adalah detail registrasi anda di *'.$regist->nama_klinik.'* yang beralamat pada '.$regist->alamat_klinik.' Pada tanggal '.$tanggalindo.', Pukul '.$pukul.' WIB. Harap datang tepat waktu. Terimakasih atas kepercayaan anda :)';
+				// $hasil = $wa->send($nomor, $message, $idKlinik);
 				
 			} catch (Exception $e) {
 			// exception is raised and it'll be handled here
-			$e->getMessage(); // contains the error message
+			// $e->getMessage(); // contains the error message
 			}
 			$retval['status'] = true;
 			$retval['pesan'] = $pesan;

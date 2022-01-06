@@ -24,8 +24,8 @@
   <link href="<?php echo base_url(); ?>assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="<?php echo base_url(); ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="<?php echo base_url(); ?>assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/plugins/fullcalendar/fullcalendar.css'; ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css'; ?>">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'assets/plugins/fullcalendar/fullcalendar.css'; ?>">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css'; ?>">
 
   <!-- Template Main CSS File -->
   <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
@@ -54,16 +54,16 @@
 
   <main id="main">
     <?php
-        if (isset($content)) {
-            $this->load->view($content);
-        }
+    if (isset($content)) {
+      $this->load->view($content);
+    }
     ?>
   </main>
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
 
-    <div class="footer-top" style="background-image: url(<?php echo base_url().'assets/img/footer.svg';?>);background-repeat: repeat;">
+    <div class="footer-top" style="background-image: url(<?php echo base_url() . 'assets/img/footer.svg'; ?>);background-repeat: repeat;">
       <div class="container">
         <div class="row">
 
@@ -79,7 +79,7 @@
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-          
+
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
@@ -111,8 +111,8 @@
         Designed by <a href="">Melek Aplikasi</a>
       </div>
 
-    
-    
+
+
     </div>
   </footer><!-- End Footer -->
 
@@ -128,117 +128,119 @@
   <script src="<?php echo base_url(); ?>assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="<?php echo base_url(); ?>assets/js1/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url().'assets/js1/jquery.min.js'; ?>"></script>      
-    <script type="text/javascript" src="<?php echo base_url().'assets/js1/moment.min.js'; ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url().'assets/js1/bootstrap.min.js'; ?>"></script>      
-    <script type="text/javascript" src="<?php echo base_url().'assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js'; ?>"></script>      
-    <script type="text/javascript" src="<?php echo base_url().'assets/plugins/fullcalendar/fullcalendar.js'; ?>"></script> 
+  <script type="text/javascript" src="<?php echo base_url() . 'assets/js1/jquery.min.js'; ?>"></script>
+  <script type="text/javascript" src="<?php echo base_url() . 'assets/js1/moment.min.js'; ?>"></script>
+  <script type="text/javascript" src="<?php echo base_url() . 'assets/js1/bootstrap.min.js'; ?>"></script>
+  <script type="text/javascript" src="<?php echo base_url() . 'assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js'; ?>"></script>
+  <script type="text/javascript" src="<?php echo base_url() . 'assets/plugins/fullcalendar/fullcalendar.js'; ?>"></script>
 
   <!-- Template Main JS File -->
   <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript">
-    var get_data        = '<?php echo $get_data; ?>';
-    var backend_url     = '<?php echo base_url(); ?>';
+  <script type="text/javascript">
+    var get_data = '<?php echo $get_data; ?>';
+    var backend_url = '<?php echo base_url(); ?>';
 
     $(document).ready(function() {
-        $('.date-picker').datepicker();
-        $('#calendarIO').fullCalendar({
-            header: {
-                left: 'prev',
-                center: 'title',
-                right: 'next'
-            },
-            defaultDate: moment().format('YYYY-MM-DD'),
-            editable: true,
-                eventLimit: true, // allow "more" link when too many events
-                selectable: true,
-                selectHelper: true,
-                select: function(start, end) {
-                
-                },
-                eventDrop: function(event, delta, revertFunc) { // si changement de position
-                    editDropResize(event);
-                },
-                eventResize: function(event,dayDelta,minuteDelta,revertFunc) { // si changement de longueur
-                    editDropResize(event);
-                },
-                eventClick: function(event, element)
-                {
-                    deteil(event);
-                },
-                events: JSON.parse(get_data)
-            });
+      $('.date-picker').datepicker();
+      $('#calendarIO').fullCalendar({
+        header: {
+          left: 'prev',
+          center: 'title',
+          right: 'next'
+        },
+        defaultDate: moment().format('YYYY-MM-DD'),
+        editable: true,
+        eventLimit: true, // allow "more" link when too many events
+        selectable: true,
+        selectHelper: true,
+        select: function(start, end) {
+
+        },
+        eventDrop: function(event, delta, revertFunc) { // si changement de position
+          editDropResize(event);
+        },
+        eventResize: function(event, dayDelta, minuteDelta, revertFunc) { // si changement de longueur
+          editDropResize(event);
+        },
+        eventClick: function(event, element) {
+          deteil(event);
+        },
+        events: JSON.parse(get_data)
+      });
 
     });
 
-    function deteil(event)
-    {    
-        $.ajax({
-            url : "<?= base_url()."pendaftaran/pilihjam/" .  $layanan->id_layanan?>",
-            method: 'post',
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            data    : {
-              'id' : +event.id,
-              'tanggal' : +event.start,
-              'rutin' : +event.rutin},
-            async: false,
-            success: function (response) {
-                $('#pilihjam').html(response);
-                
-            },
-            error: function(){
-            }
-        });
-    }
-
-    </script>
-    <!-- Search Klinik -->
-    <script>
-        $("#s_klinik").bind('keyup', function() {
-			var term = $(this).val().toLowerCase();
-			$('.v_cari').each(function(){
-                if ($(this).filter(`[data-filter-name*="${term}"]`).length > 0 || term.length < 1) {
-                    $(this).show(500);
-                } else {
-                    $(this).hide(500);
-                }
-            });
-		});
-        
-
-        $("#s_layanan").bind('keyup', function() {
-			var term = $(this).val().toLowerCase();
-			$('.v_cari').each(function(){
-                if ($(this).filter(`[data-filter-name*="${term}"]`).length > 0 || term.length < 1) {
-                    $(this).show(500);
-                } else {
-                    $(this).hide(500);
-                }
-            });
-		});
-
-    </script>
-
-<script type="text/javascript">
-    function search(){
-      $("#loading").show(); // Tampilkan loadingnya
-      
+    function deteil(event) {
       $.ajax({
-            url : "<?= base_url()."pendaftaran/search/"?>",
-            method: 'post',
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            data: {nik : $("#nik").val()}, // data yang akan dikirim ke file proses
-            dataType: "json",
-            beforeSend: function(e) {
-                if(e && e.overrideMimeType) {
-                    e.overrideMimeType("application/json;charset=UTF-8");
-                }
+        url: "<?= base_url() . "pendaftaran/pilihjam/" .  $layanan->id_layanan ?>",
+        method: 'post',
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        success: function(response){ // Ketika proses pengiriman berhasil
+        data: {
+          'id': +event.id,
+          'tanggal': +event.start,
+          'rutin': +event.rutin
+        },
+        async: false,
+        success: function(response) {
+          $('#pilihjam').html(response);
+
+        },
+        error: function() {}
+      });
+    }
+  </script>
+  <!-- Search Klinik -->
+  <script>
+    $("#s_klinik").bind('keyup', function() {
+      var term = $(this).val().toLowerCase();
+      $('.v_cari').each(function() {
+        if ($(this).filter(`[data-filter-name*="${term}"]`).length > 0 || term.length < 1) {
+          $(this).show(500);
+        } else {
+          $(this).hide(500);
+        }
+      });
+    });
+
+
+    $("#s_layanan").bind('keyup', function() {
+      var term = $(this).val().toLowerCase();
+      $('.v_cari').each(function() {
+        if ($(this).filter(`[data-filter-name*="${term}"]`).length > 0 || term.length < 1) {
+          $(this).show(500);
+        } else {
+          $(this).hide(500);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    function search() {
+      $("#loading").show(); // Tampilkan loadingnya
+
+      $.ajax({
+        url: "<?= base_url() . "pendaftaran/search/" ?>",
+        method: 'post',
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+          nik: $("#nik").val()
+        }, // data yang akan dikirim ke file proses
+        dataType: "json",
+        beforeSend: function(e) {
+          if (e && e.overrideMimeType) {
+            e.overrideMimeType("application/json;charset=UTF-8");
+          }
+        },
+        success: function(response) { // Ketika proses pengiriman berhasil
           $("#loading").hide(); // Sembunyikan loadingnya
-                
-          if(response.status == "success"){ // Jika isi dari array status adalah success
+
+          if (response.status == "success") { // Jika isi dari array status adalah success
             $("#no_rm").val(response.no_rm); // set textbox dengan id nama
             $("#id_pasien").val(response.id_pasien); // set textbox dengan id nama
             $("#nama").val(response.nama); // set textbox dengan id nama
@@ -253,24 +255,24 @@
             $("#hp").val(response.hp);
             $("#umur").val(response.umur);
             $("#pemetaan").val(response.pemetaan);
-          }else{ // Jika isi dari array status adalah failed
+          } else { // Jika isi dari array status adalah failed
             alert("Data Tidak Ditemukan");
           }
         },
-            error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+        error: function(xhr, ajaxOptions, thrownError) { // Ketika ada error
           alert(xhr.responseText);
-            }
-        });
+        }
+      });
     }
-    $(document).ready(function(){
+    $(document).ready(function() {
       $("#loading").hide(); // Sembunyikan loadingnya
-      
-        $("#btn-search").click(function(){ // Ketika user mengklik tombol Cari
-            search(); // Panggil function search
-        });
-        
-        $("#nik").keyup(function(){ // Ketika user menekan tombol di keyboard
-        if(event.keyCode == 13){ // Jika user menekan tombol ENTER
+
+      $("#btn-search").click(function() { // Ketika user mengklik tombol Cari
+        search(); // Panggil function search
+      });
+
+      $("#nik").keyup(function() { // Ketika user menekan tombol di keyboard
+        if (event.keyCode == 13) { // Jika user menekan tombol ENTER
           search(); // Panggil function search
         }
       });
@@ -279,32 +281,50 @@
 
 
   <script>
-    $("#pasien").change(function() { 
-      
-      if ( $(this).val() == "1") {
+    $("#pasien").change(function() {
 
-          $("#pasien1").show();
-          $("#medis").show();
+      if ($(this).val() == "1") {
 
-      }else{
-        
-            $("#pasien1").hide();
-        }
-      
-        if ( $(this).val() == "2") {
-
-      $("#pasien2").show();
+        $("#pasien1").show();
         $("#medis").show();
-      }else{
+
+      } else {
+
+        $("#pasien1").hide();
+      }
+
+      if ($(this).val() == "2") {
+
+        $("#pasien2").show();
+        $("#medis").show();
+      } else {
 
         $("#pasien2").hide();
-        
+
       }
     });
-</script>
 
-<script>
-  var save_method, txtAksi, table, table2;
+    $("#penyakit").change(function() {
+
+      if ($(this).val() == "1") {
+        $("#ket_penyakit").show();
+      } else {
+        $("#ket_penyakit").hide();
+      }
+    });
+
+    $("#alergi_obat").change(function() {
+
+      if ($(this).val() == "1") {
+        $("#alergi_obat_val").show();
+      } else {
+        $("#alergi_obat_val").hide();
+      }
+    });
+  </script>
+
+  <script>
+    var save_method, txtAksi, table, table2;
 
     function reset_form(a) {
       $(":input", "#" + a).not(":button, :submit, :reset, :hidden").val("").prop("checked", !1).prop("selected", !1)
@@ -344,9 +364,11 @@
           $("#btnSave").prop("disabled", !0),
           $("#btnSave").text("Menyimpan Data"),
           $.ajax({
-            url : "<?= base_url()."pendaftaran/simpan_data"?>",
+            url: "<?= base_url() . "pendaftaran/simpan_data" ?>",
             method: 'post',
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: e,
             dataType: "JSON",
             processData: !1,
@@ -355,23 +377,23 @@
             timeout: 6e5,
             success: function(a) {
               if (a.status) Swal.fire("Sukses!!", a.pesan, "success"),
-              $("#btnSave").prop("disabled", !1),
-              $("#btnSave").text("Simpan"), 
-              window.location.href = "<?= base_url()."pendaftaran/thanks"?>";
+                $("#btnSave").prop("disabled", !1),
+                $("#btnSave").text("Simpan"),
+                window.location.href = "<?= base_url() . "pendaftaran/thanks" ?>";
               else {
                 for (var e = 0; e < a.inputerror.length; e++) 0 == a.is_select2[e] ? ($('[name="' + a.inputerror[e] + '"]').addClass("is-invalid"),
-                $('[name="' + a.inputerror[e] + '"]').next().text(a.error_string[e])
-                .addClass("invalid-feedback")) : $('[name="' + a.inputerror[e] + '"]')
-                .next().next()
-                .text(a.error_string[e])
-                .addClass("invalid-feedback-select");
+                    $('[name="' + a.inputerror[e] + '"]').next().text(a.error_string[e])
+                    .addClass("invalid-feedback")) : $('[name="' + a.inputerror[e] + '"]')
+                  .next().next()
+                  .text(a.error_string[e])
+                  .addClass("invalid-feedback-select");
                 $("#btnSave").prop("disabled", !1), $("#btnSave").text("Simpan")
               }
             },
-          error: function(a) {
-            console.log("ERROR : ", a), $("#btnSave").prop("disabled", !1), $("#btnSave").text("Simpan")
-          }
-        })) : a.dismiss === Swal.DismissReason.cancel && Swal.fire("Dibatalkan", "Aksi Dibatalakan", "error")
+            error: function(a) {
+              console.log("ERROR : ", a), $("#btnSave").prop("disabled", !1), $("#btnSave").text("Simpan")
+            }
+          })) : a.dismiss === Swal.DismissReason.cancel && Swal.fire("Dibatalkan", "Aksi Dibatalakan", "error")
       })
     }
 
@@ -387,7 +409,7 @@
     function get_uri_segment(a) {
       return window.location.pathname.split("/")[a]
     }
-</script>
+  </script>
 </body>
 
 </html>
