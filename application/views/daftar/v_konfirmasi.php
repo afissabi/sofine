@@ -253,7 +253,7 @@
                                 </div>
                             </div>
                             <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg kt-separator--portlet-fit"></div>
-                            <div class="form-group row">
+                            <div class="form-group row mb-3">
                                 <label class="col-lg-1 col-form-label">Hepatitis:</label>
                                 <div class="col-lg-3">
                                     <select class="form-control required" name="hepatitis" id="hepatitis">
@@ -270,13 +270,36 @@
                                     </select>
                                     <span class="help-block"></span>
                                 </div>
+                            </div>
+                            <div class="form-group row mb2">
                                 <label class="col-lg-1 col-form-label">Penyakit Lainnya:</label>
                                 <div class="col-lg-3">
-                                    <select class="form-control required" name="penyakit_lainnya" id="penyakit_lainnya">
+                                    <select class="form-control required" id="penyakit" name="penyakit_lainnya" id="penyakit_lainnya">
                                         <option value="0"> Tidak Ada </option>
                                         <option value="1"> Ada </option>
                                     </select>
-                                    <span class="help-block"></span>
+                                </div>
+                                <div class="col-lg-4" id="ket_penyakit" style="display:none;">
+                                    <textarea class="form-control" name="ket_penyakit" rows="4" placeholder="Tuliskan Jenis Penyakit Lainnya..."></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row mb2">
+                                <label class="col-lg-1 col-form-label">Alergi obat-obatan :</label>
+                                <div class="col-lg-3">
+                                    <select class="form-control required" id="alergi_obat" name="alergi_obat" id="penyakit_lainnya">
+                                        <option value="0"> Tidak Ada </option>
+                                        <option value="1"> Ada </option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4" id="alergi_obat_val" style="display:none;">
+                                    <textarea class="form-control" name="alergi_obat_val" rows="4" placeholder="Tuliskan Jenis Alergi Obat..."></textarea>
+                                </div>
+                                <label class="col-lg-1 col-form-label">Jenis Pembayaran:</label>
+                                <div class="col-lg-3">
+                                    <select class="form-control required" name="jenis_bayar" required>
+                                        <option value=""> Umum </option>
+                                        <option value="1"> Asuransi </option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

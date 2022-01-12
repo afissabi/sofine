@@ -32,6 +32,7 @@ class T_registrasi extends CI_Model
         $this->db->where('tanggal_reg', $tanggal);
         $this->db->where('jam_reg <=', $jam);
         $this->db->where('estimasi_selesai >', $jam);
+        $this->db->where('deleted_at', null);
         $query = $this->db->get();
         return $query->row();
         // print_r($this->db->last_query());
