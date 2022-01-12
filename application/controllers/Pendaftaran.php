@@ -13,6 +13,7 @@ class Pendaftaran extends CI_Controller {
 		$this->load->model("m_user");
 		$this->load->model("m_data_medik");
         $this->load->model("m_pasien");
+		$this->load->model("m_pesan_blash");
         $this->load->model("t_registrasi");
         $this->load->model("t_spam");
         $this->load->model("t_jadwaldokter");
@@ -509,8 +510,15 @@ class Pendaftaran extends CI_Controller {
 
 				// $nomor = $regist->hp;
 				// $idKlinik = $regist->id_klinik;
-				// $pukul = date_format(date_create($regist->jam_reg), "H:i");
-				
+				$pukul = date_format(date_create($regist->jam_reg), "H:i");
+				$template_pesan = $this->m_pesan_blash->getPesan();
+				$text = $template_pesan->pesan;
+				$text = str_replace("#KLINIK#", $regist->nama_klinik, $text);
+				$text = str_replace("#NAMA#", $regist->nama, $text);
+				$text = str_replace("#ALAMAT#", $regist->alamat_klinik, $text);
+				$text = str_replace("#TANGGAL#", $tanggalindo, $text);
+				$text = str_replace("#JAM#", $pukul, $text);
+				$message = $text;
 				// $message = 'Hallo Kakak *'.$regist->nama.'* Berikut adalah detail registrasi anda di *'.$regist->nama_klinik.'* yang beralamat pada '.$regist->alamat_klinik.' Pada tanggal '.$tanggalindo.', Pukul '.$pukul.' WIB. Harap datang tepat waktu. Terimakasih atas kepercayaan anda :)';
 				// $hasil = $wa->send($nomor, $message, $idKlinik);
 				
