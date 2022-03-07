@@ -329,12 +329,12 @@ class Pendaftaran extends CI_Controller {
     public function search(){
 		// Ambil data NIK yang dikirim via ajax post
 		$nik = $this->input->post('nik');
-		
 		$pasien = $this->m_pasien->viewByNik($nik);
-		$umur = $this->umur_dan_pemetaan($pasien->tanggal_lahir, 'umur');
-		$pemetaan = $this->umur_dan_pemetaan($pasien->tanggal_lahir, 'pemetaan');
+		
 		if( ! empty($pasien)){ // Jika data pasien ada/ditemukan
 		  // Buat sebuah array
+		  $umur = $this->umur_dan_pemetaan($pasien->tanggal_lahir, 'umur');
+			$pemetaan = $this->umur_dan_pemetaan($pasien->tanggal_lahir, 'pemetaan');
 		  $callback = array(
 			'status' => 'success', // Set array status dengan success
 			'id_pasien' => $pasien->id,

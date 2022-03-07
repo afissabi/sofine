@@ -221,7 +221,6 @@
   <script type="text/javascript">
     function search() {
       $("#loading").show(); // Tampilkan loadingnya
-
       $.ajax({
         url: "<?= base_url() . "pendaftaran/search/" ?>",
         method: 'post',
@@ -239,7 +238,7 @@
         },
         success: function(response) { // Ketika proses pengiriman berhasil
           $("#loading").hide(); // Sembunyikan loadingnya
-
+          console.log('kesini'); 
           if (response.status == "success") { // Jika isi dari array status adalah success
             $("#no_rm").val(response.no_rm); // set textbox dengan id nama
             $("#id_pasien").val(response.id_pasien); // set textbox dengan id nama
@@ -256,6 +255,7 @@
             $("#umur").val(response.umur);
             $("#pemetaan").val(response.pemetaan);
           } else { // Jika isi dari array status adalah failed
+          
             alert("Data Tidak Ditemukan");
           }
         },
