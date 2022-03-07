@@ -197,7 +197,7 @@
                                 <div class="col-md-12 mb-3 mb-md-4">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="text" name="hp2" value="" placeholder="No. Hp (WA)" class="form-control">
+                                            <input type="text" name="hp2" value="" placeholder="No. Hp (WA)" class="form-control" required="">
                                         </div>
                                     </div>
                                 </div>
